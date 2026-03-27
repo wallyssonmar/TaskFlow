@@ -1,0 +1,46 @@
+<div class="flex flex-col justify-center items-center h-screen">
+  <section class="title-log-reg">
+    <h1 class="text-4xl font-bold">TaskFlow</h1>
+    <p class="text-gray-600">Gerencie seus projetos com eficiência</p>
+  </section>
+  <div class="flex flex-col items-center w-120 h-130 bg-input-background rounded-lg">
+    <h2 class="flex m-3.5 text-2xl font-bold">Criar conta</h2>
+    <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="registrar()">
+      <div>
+        <p>Nome:</p>
+        <input class="input" type="text" formControlName="nome" placeholder="Digite seu nome" />
+      </div>
+      <div>
+        <p>Email:</p>
+        <input class="input" type="email" formControlName="email" placeholder="Digite seu email" />
+      </div>
+      <div>
+        <p>Senha:</p>
+        <input class="input" type="password" formControlName="senha" placeholder="Digite sua senha" />
+      </div>
+      <div>
+        <section class="flex gap-6">
+          <p>Confirme sua senha:</p>
+          <div *ngIf="form.errors?.['senhaDiferente'] && form.touched" class="text-red-500">Senhas não coincidem</div>
+        </section>
+        
+        <input
+        class="input"
+        type="password"
+        formControlName="confirmarSenha"
+        placeholder="Confirme sua senha"
+      />
+      </div>          
+
+      <button [disabled]="form.invalid" type="submit" class="btn-reg-log hover:cursor-pointer disabled:bg-gray-400 
+         disabled:cursor-not-allowed 
+         disabled:opacity-50">Criar conta</button>
+
+    </form>
+    <div class="flex gap-2 mt-6">
+        <p>Já possui uma conta?</p><a class="link-log-reg" routerLink="/login">Entrar</a>
+
+    </div>
+    
+  </div>
+</div>
