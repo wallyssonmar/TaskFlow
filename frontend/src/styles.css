@@ -11,6 +11,8 @@
 body{
     background-color: var(--color-background);
     font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    margin-bottom: 20px;
 }
 
 
@@ -25,6 +27,8 @@ body{
     --color-chart-1: oklch(0.646 0.222 41.116);
     --color-sidebar: oklch(0.985 0 0);
     --color-sidebar-border: oklch(0.922 0 0);
+
+    --breakpoint-pc: 101.25rem;
 }
 
 .title-log-reg{
@@ -40,4 +44,15 @@ body{
 }
 .link-log-reg{
     @apply hover:cursor-pointer text-blue-600
+}
+
+.card-projetos{
+    @apply w-95 p-3 bg-card gap-3 rounded-lg h-60 border  border-gray-300 hover:cursor-pointer hover:shadow-xl/20
+}
+
+.lista-projeto{
+    @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5
+}
+.lista-cores{
+    @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5
 }
