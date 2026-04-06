@@ -1,16 +1,21 @@
 <div class="flex flex-col items-center mt-6">
   <div class="flex w-395 justify-between">
-    <section class="flex flex-col  gap-2 mb-8">
+    <section class="flex flex-col gap-2 mb-8">
       <h1 class="text-3xl font-bold">Meus projetos</h1>
       <p>Gerencie e organize suas tarefas por projeto</p>
     </section>
-    <button class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"(click)="isOpen = true">Novo projeto</button>
+    <button
+      class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+      (click)="isOpen = true"
+    >
+      Novo projeto
+    </button>
   </div>
 
   <ul class="lista-projeto">
     <li *ngFor="let projeto of projetos">
       <div class="card-projetos">
-        <a routerLink="/projetos">
+        <a routerLink="/projetos" (click)="tarefaEscolhida(projeto)">
           <div class="flex gap-3 mb-2">
             <img
               class="w-9 p-1 rounded-lg"
@@ -23,15 +28,22 @@
           <section>
             <p class="text-gray-600">{{ projeto.descricao }}</p>
           </section>
-          <p class="mt-8">{{projeto.qtdTarefaConcluida}}/{{ projeto.qtdTarefa }} Tarefas</p>
-          <div class="w-full h-2 bg-gray-200 rounded">
-            <div
-              class="h-2 rounded"
-              [style.backgroundColor]="projeto.selectedColor"
-              [style.width.%]="projeto.progresso"
-            ></div>
-          </div>
-          <p>{{ projeto.qtdMembros }} Membros</p>
+          <section class="flex flex-col mb-8 mt-6 gap-3">
+            <div class="flex justify-between">
+              <p class="text-gray-600">Progresso</p>
+              <p >{{ projeto.qtdTarefaConcluida }}/{{ projeto.qtdTarefa }} Tarefas</p>
+            </div>
+
+            <div class="w-full h-2 bg-gray-200 rounded">
+              <div
+                class="h-2 rounded"
+                [style.backgroundColor]="projeto.selectedColor"
+                [style.width.%]="projeto.progresso"
+              ></div>
+            </div>
+          </section>
+
+          <p class="text-gray-600">{{ projeto.qtdMembros }} Membros</p>
         </a>
       </div>
     </li>
@@ -44,33 +56,48 @@
       <!-- Botão fechar -->
       <button class="absolute top-3 right-3 text-gray-500" (click)="isOpen = false">✕</button>
       <form [formGroup]="form" (ngSubmit)="criarProjeto()">
-      <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
-      <p class="text-gray-500 text-sm mb-4">Adicione um novo projeto para organizar suas tarefas</p>
+        <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
+        <p class="text-gray-500 text-sm mb-4">
+          Adicione um novo projeto para organizar suas tarefas
+        </p>
 
-      <h3>Nome do Projeto</h3>
-      <input type="text" formControlName="name" placeholder="Ex: Trabalho, Faculdade, Pessoal" class="w-full mb-3 p-2 border rounded" />
+        <h3>Nome do Projeto</h3>
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="Ex: Trabalho, Faculdade, Pessoal"
+          class="w-full mb-3 p-2 border rounded"
+        />
 
-      <h3>Descrição</h3>
-      <input formControlName="descricao" placeholder="Descreva o propósito deste projeto..." class="w-full mb-3 p-2 border rounded"/>
+        <h3>Descrição</h3>
+        <input
+          formControlName="descricao"
+          placeholder="Descreva o propósito deste projeto..."
+          class="w-full mb-3 p-2 border rounded"
+        />
 
-      <!-- Cores -->
-      <div class="lista-cores mb-5">
-        <div
-          *ngFor="let color of colors"
-          tabindex="0"
-          class="w-25 h-10 rounded cursor-pointer borde focus:outline-none focus:ring-2 focus:ring-black"
-          [style.backgroundColor]="color"
-          [class.border-black]="selectedColor === color"
-          (click)="selectedColor = color"
-        ></div>
-      </div>
+        <!-- Cores -->
+        <div class="lista-cores mb-5">
+          <div
+            *ngFor="let color of colors"
+            tabindex="0"
+            class="w-25 h-10 rounded cursor-pointer borde focus:outline-none focus:ring-2 focus:ring-black"
+            [style.backgroundColor]="color"
+            [class.border-black]="selectedColor === color"
+            (click)="form.patchValue({ selectedColor: color })"
+          ></div>
+        </div>
 
-      <!-- Botões -->
-      <div class="flex justify-end gap-2">
-        <button class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
-        <button class="px-4 py-2 bg-black text-white rounded disabled:cursor-not-allowed 
-         disabled:opacity-50 disabled:bg-gray-400" [disabled]="form.invalid"  >Criar Projeto</button>
-      </div>
+        <!-- Botões -->
+        <div class="flex justify-end gap-2">
+          <button class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
+          <button
+            class="px-4 py-2 bg-black text-white rounded disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
+            [disabled]="form.invalid"
+          >
+            Criar Projeto
+          </button>
+        </div>
       </form>
     </div>
   </div>

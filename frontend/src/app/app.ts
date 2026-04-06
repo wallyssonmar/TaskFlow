@@ -5,7 +5,7 @@ import { TelaLogin } from "./components/tela-login/tela-login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TelaRegister, TelaLogin],
+  imports: [RouterOutlet,],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

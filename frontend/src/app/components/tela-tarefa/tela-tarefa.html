@@ -1,0 +1,214 @@
+<div class="flex flex-col w-screen pl-50 pr-50 mt-10">
+  <a
+    routerLink="/dashboard"
+    class="flex items-center justify-center gap-2 hover:cursor-pointer hover:bg-gray-200 w-60 h-10 rounded-lg mb-5"
+  >
+    <img class="w-7" src="arrow-left.svg" alt="" />
+    <p class="">Voltar ao Dashboard</p>
+  </a>
+  <div class="flex justify-between mb-10">
+    <section class="flex flex-col gap-2">
+      <h2 class="text-3xl font-medium">{{ projetoSelecionado?.name }}</h2>
+      <p>{{ projetoSelecionado?.descricao }}</p>
+      <p>{{ pessoaLogada }}</p>
+    </section>
+    <button
+      class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+      (click)="isOpen = true"
+    >
+      Criar Tarefa
+    </button>
+  </div>
+
+  <div class="grid grid-cols-3 gap-10">
+    <div>
+      <section class="flex items-center mb-4 gap-2">
+        <div class="w-4 h-4 bg-gray-600 rounded-full"></div>
+        <h2 class="font-medium w-30 text-xl">A Fazer</h2>
+      </section>
+
+      <div class="w-full bg-gray-600 h-0.5 rounded-lg mb-6"></div>
+      <div
+        cdkDropList
+        [cdkDropListData]="listaAfazers"
+        id="listaAfazers"
+        [cdkDropListConnectedTo]="['listaProgressos', 'listaConcluidas']"
+        (cdkDropListDropped)="drop($event)"
+        class="cdkDropList"
+      >
+        <div class="tarefa" *ngFor="let listaAfazer of listaAfazers" cdkDrag>
+          <h3 class="title-tarefa">{{ listaAfazer.name }}</h3>
+          <p class="w-full h-20 text-gray-500 break-all">{{ listaAfazer.descricao }}</p>
+          <p
+            class="tarefa-prioridade"
+            [ngClass]="{
+              'bg-green-200 text-white': listaAfazer.prioridade === 'Baixa',
+              'bg-yellow-200 text-black': listaAfazer.prioridade === 'Média',
+              'bg-red-400 text-white': listaAfazer.prioridade === 'Alta',
+            }"
+          >
+            {{ listaAfazer.prioridade }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <section>
+      <section class="flex items-center mb-4 gap-2">
+        <div class="w-4 h-4 bg-blue-600 rounded-full"></div>
+        <h2 class="font-medium w-40 text-xl">Em Progresso</h2>
+      </section>
+
+      <div class="w-full bg-blue-600 h-0.5 rounded-lg mb-6"></div>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="listaProgressos"
+        id="listaProgressos"
+        [cdkDropListConnectedTo]="['listaAfazers', 'listaConcluidas']"
+        (cdkDropListDropped)="drop($event)"
+        class="cdkDropList"
+      >
+        <div class="tarefa" *ngFor="let listaProgresso of listaProgressos" cdkDrag>
+          <h3 class="title-tarefa">{{ listaProgresso.name }}</h3>
+          <p class="w-full h-20 text-gray-500">{{ listaProgresso.descricao }}</p>
+          <p
+            class="tarefa-prioridade"
+            [ngClass]="{
+              'bg-green-200 text-white': listaProgresso.prioridade === 'Baixa',
+              'bg-yellow-200 text-black': listaProgresso.prioridade === 'Média',
+              'bg-red-400 text-white': listaProgresso.prioridade === 'Alta',
+            }"
+          >
+            {{ listaProgresso.prioridade }}
+          </p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <section class="flex items-center mb-4 gap-2">
+        <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+        <h2 class="font-medium w-30 text-xl">Concluído</h2>
+      </section>
+
+      <div class="w-full bg-green-600 h-0.5 rounded-lg mb-6"></div>
+
+      <div
+        cdkDropList
+        [cdkDropListData]="listaConcluidas"
+        id="listaConcluidas"
+        [cdkDropListConnectedTo]="['listaAfazers', 'listaProgressos']"
+        (cdkDropListDropped)="drop($event)"
+        class="cdkDropList"
+      >
+        <div class="tarefa" *ngFor="let listaConcluida of listaConcluidas" cdkDrag>
+          <h3 class="title-tarefa">{{ listaConcluida.name }}</h3>
+          <p class="w-full h-20 text-gray-500 break-all">{{ listaConcluida.descricao }}</p>
+          <p
+            class="tarefa-prioridade"
+            [ngClass]="{
+              'bg-green-200 text-white': listaConcluida.prioridade === 'Baixa',
+              'bg-yellow-200 text-black': listaConcluida.prioridade === 'Média',
+              'bg-red-400 text-white': listaConcluida.prioridade === 'Alta',
+            }"
+          >
+            {{ listaConcluida.prioridade }}
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Overlay -->
+    <div *ngIf="isOpen" class="fixed inset-0 bg-black/50 flex items-center justify-center">
+      <!-- Modal -->
+      <div class="bg-white rounded-xl w-125 h-115 p-6 shadow-lg relative">
+        <!-- Botão fechar -->
+        <button class="absolute top-3 right-3 text-gray-500" (click)="isOpen = false">✕</button>
+        <form [formGroup]="form" (ngSubmit)="criarTarefa()">
+          <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
+          <p class="text-gray-500 text-sm mb-4">
+            Adicione um novo projeto para organizar suas tarefas
+          </p>
+
+          <h3>Nome da Tarefa</h3>
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Ex: Trabalho, Faculdade, Pessoal"
+            class="w-full mb-3 p-2 border rounded"
+          />
+
+          <h3>Descrição</h3>
+          <input
+            formControlName="descricao"
+            placeholder="Adicione detalhes sobre a tarefa..."
+            class="w-full mb-3 p-2 border rounded"
+          />
+          <section class="flex justify-around mb-5">
+            <div class="w-50">
+              <label>Prioridade</label>
+
+              <div
+                class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
+                (click)="togglePrioridade()"
+              >
+                {{ form.get('prioridade')?.value }}
+                <span>▾</span>
+              </div>
+
+              <div
+                class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
+                *ngIf="openPrioridade"
+              >
+                <div
+                  *ngFor="let item of listaPrioridades"
+                  (click)="selectPrioridade(item)"
+                  [class.active]="item === form.get('prioridade')?.value"
+                  class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
+                >
+                  {{ item }}
+                  <span *ngIf="item === prioridade">✔</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-50">
+              <label>Status</label>
+              <div
+                class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
+                (click)="toggleStatus()"
+              >
+                {{ form.get('status')?.value }}
+                <span>▾</span>
+              </div>
+
+              <div
+                class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
+                *ngIf="openStatus"
+              >
+                <div
+                  *ngFor="let item of listaStatus"
+                  (click)="selectStatus(item)"
+                  [class.active]="item === form.get('status')?.value"
+                  class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
+                >
+                  {{ item }}
+                  <span *ngIf="item === form.get('status')?.value">✔</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Botões -->
+          <div class="flex justify-end gap-2">
+            <button class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
+            <button
+              class="px-4 py-2 bg-black text-white rounded disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
+              [disabled]="form.invalid"
+            >
+              Criar Projeto
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

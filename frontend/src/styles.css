@@ -56,3 +56,18 @@ body{
 .lista-cores{
     @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5
 }
+
+.cdkDropList{
+  @apply flex flex-col w-[95%] gap-2 m-auto min-h-150
+}
+.tarefa{
+    @apply flex flex-col p-2 bg-input-background h-35 border rounded-lg border-gray-300 
+}
+
+.title-tarefa{
+    @apply text-lg font-medium
+}
+
+.tarefa-prioridade{
+    @apply flex items-center justify-center w-15 h-10 rounded-lg
+}

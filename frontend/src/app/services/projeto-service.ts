@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Projeto } from '../models/projeto';
+import { of,Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjetoService {
+  tarefaEscolhido: any;
   
   projetos : Projeto [] = [
     {name: 'Teste 1', descricao: 'Testando o tamanho da descrição do projeto para melhora', qtdTarefa: 4,qtdTarefaConcluida: 2,qtdMembros: 3,selectedColor: '#3B82F6'},
@@ -22,6 +24,19 @@ export class ProjetoService {
     }));
   }
 
+  getProjetoEscolhido(): Observable<Projeto>{
+    return of(this.tarefaEscolhido);
+  }
+  setProjeto(projeto : Projeto){
+    this.projetos.push(projeto);
+    console.log(projeto)
+  }
+
+  setTarefa(projeto: Projeto) {
+    
+    return this.tarefaEscolhido = projeto
+
+  }
 
 }
 

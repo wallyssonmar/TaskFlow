@@ -1,0 +1,10 @@
+
+
+.cdk-drag {
+  @apply cursor-grab;
+}
+
+.cdk-drag-dragging {
+  @apply cursor-grabbing;
+}
+

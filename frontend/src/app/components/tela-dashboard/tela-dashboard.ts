@@ -19,7 +19,7 @@ export class TelaDashboard {
 
   colors = ['#3B82F6', '#8B5CF6', '#22C55E', '#EF4444', '#EAB308', '#EC4899', '#6366F1', '#14B8A6'];
 
-  selectedColor = this.colors[0];
+  selectedColor?: string;
 
   constructor(
     private projetoService: ProjetoService,
@@ -28,17 +28,31 @@ export class TelaDashboard {
     this.form = this.fb.group({
       name: ['', Validators.required],
       descricao: ['', [Validators.required, Validators.maxLength(65)]],
+      selectedColor: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.projetos = this.projetoService.getProjetos();
   }
+
+  
+  getProjetos(){
+    this.projetos = this.projetoService.getProjetos();
+    return this.isOpen = false
+  }
+
+
   criarProjeto() {
     if (this.form.valid) {
-      console.log(this.form.value);
-      console.log("passou aqui");
+      
+      this.projetoService.setProjeto(this.form.value);
+      this.getProjetos();
       
     }
+  }
+
+  tarefaEscolhida(projeto: Projeto){
+    this.projetoService.setTarefa(projeto);
   }
 }

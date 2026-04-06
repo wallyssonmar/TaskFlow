@@ -3,7 +3,7 @@ import path from 'path';
 import { TelaLogin } from './components/tela-login/tela-login';
 import { TelaRegister } from './components/tela-register/tela-register';
 import { TelaDashboard } from './components/tela-dashboard/tela-dashboard';
-import { TelaProjetos } from './components/tela-projetos/tela-projetos';
+import { TelaTarefa } from './components/tela-tarefa/tela-tarefa';
 import { MainLayoutComponent } from './layout/main-layout-component/main-layout-component';
 import { AuthLayoutComponent } from './layout/auth-layout-component/auth-layout-component';
 
@@ -24,7 +24,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'dashboard', component: TelaDashboard },
-      { path: 'projetos', component: TelaProjetos }
+      { path: 'projetos', component: TelaTarefa }
     ]
   }
 ];
