@@ -1,0 +1,85 @@
+[
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
+    "Method": "GetProjetosAsync",
+    "RelativePath": "api/Projeto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[TaskFlowAPI.Models.Projeto, TaskFlowAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
+    "Method": "SetProjetoAsync",
+    "RelativePath": "api/Projeto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "projeto",
+        "Type": "TaskFlowAPI.Models.Projeto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TaskFlowAPI.Models.Projeto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
+    "Method": "DeletarProjetoAsync",
+    "RelativePath": "api/Projeto/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
+    "Method": "AtualizarProjeto",
+    "RelativePath": "api/Projeto/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "projeto",
+        "Type": "TaskFlowAPI.Models.Projeto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

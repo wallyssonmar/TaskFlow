@@ -4,6 +4,7 @@ import { Projeto } from '../../models/projeto';
 import { ProjetoService } from '../../services/projeto-service';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tela-dashboard',
@@ -14,7 +15,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ɵInternalForm
 export class TelaDashboard {
   form: FormGroup;
   
-  projetos: Projeto[] = [];
+  projetos$!: Observable<Projeto[]>;
   isOpen = false;
 
   colors = ['#3B82F6', '#8B5CF6', '#22C55E', '#EF4444', '#EAB308', '#EC4899', '#6366F1', '#14B8A6'];
@@ -33,13 +34,12 @@ export class TelaDashboard {
   }
 
   ngOnInit(): void {
-    this.projetos = this.projetoService.getProjetos();
+    this.projetos$ = this.projetoService.getProjetos();
   }
 
   
   getProjetos(){
-    this.projetos = this.projetoService.getProjetos();
-    return this.isOpen = false
+   this.projetos$ = this.projetoService.getProjetos();
   }
 
 

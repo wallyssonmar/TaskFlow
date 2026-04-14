@@ -13,7 +13,7 @@
   </div>
 
   <ul class="lista-projeto">
-    <li *ngFor="let projeto of projetos">
+    <li *ngFor="let projeto of projetos$ | async">
       <div class="card-projetos">
         <a routerLink="/projetos" (click)="tarefaEscolhida(projeto)">
           <div class="flex gap-3 mb-2">

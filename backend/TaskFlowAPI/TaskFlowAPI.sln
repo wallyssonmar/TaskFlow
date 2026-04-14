@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36908.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskFlowAPI", "TaskFlowAPI.csproj", "{285E7D34-FA09-435A-A220-02F6104F644E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{285E7D34-FA09-435A-A220-02F6104F644E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285E7D34-FA09-435A-A220-02F6104F644E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285E7D34-FA09-435A-A220-02F6104F644E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285E7D34-FA09-435A-A220-02F6104F644E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A826F40A-9D5F-4068-9514-FA38A1D65515}
+	EndGlobalSection
+EndGlobal
