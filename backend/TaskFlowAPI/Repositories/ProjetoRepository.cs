@@ -39,10 +39,9 @@ namespace TaskFlowAPI.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task AtualizarProjeto(Projeto projetoPorId, Projeto projeto)
+        public async Task AtualizarProjeto()
         {
-            context.Entry(projetoPorId).CurrentValues.SetValues(projeto);
-
+           
             await context.SaveChangesAsync();
         }
     }

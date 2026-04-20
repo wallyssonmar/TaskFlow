@@ -1,4 +1,5 @@
-﻿using TaskFlowAPI.Models;
+﻿using TaskFlowAPI.DTOs;
+using TaskFlowAPI.Models;
 using TaskFlowAPI.Repositories;
 
 namespace TaskFlowAPI.Services
@@ -17,16 +18,44 @@ namespace TaskFlowAPI.Services
             }
             return projeto;
         }
-        public async Task<List<Projeto>> GetProjetosAsync()
+        public async Task<List<ProjetoDto>> GetProjetosAsync()
         {
             List<Projeto> projetos = await taskFlowRepository.GetProjetoAsync();
-            return projetos;
+            List<ProjetoDto> projetoDtos = new List<ProjetoDto>();
+
+            foreach (var projeto in projetos)
+            {
+                projetoDtos.Add(new ProjetoDto
+                {
+                    id = projeto.id,
+                    name = projeto.name,
+                    description = projeto.description,
+                    color = projeto.color,
+                });
+                   
+            }
+            return projetoDtos;
         }
 
-        public async Task<Projeto> SetProjetoAsync(Projeto projeto)
+        public async Task<ProjetoDto> SetProjetoAsync(ProjetoDto projetodto)
         {
+            Projeto projeto = new Projeto
+            {
+                name = projetodto.name,
+                description = projetodto.description,
+                color = projetodto.color,
+
+            };
             Projeto retornoProjeto = await taskFlowRepository.SetProjetoAsync(projeto);
-            return retornoProjeto;
+
+
+            return new ProjetoDto
+            {   
+                id = retornoProjeto.id,
+                name = retornoProjeto.name,
+                description = retornoProjeto.description,
+                color = retornoProjeto.color,
+            };
         }
 
         public async Task DeletarProjetoAsync(int id)
@@ -37,12 +66,17 @@ namespace TaskFlowAPI.Services
             await taskFlowRepository.DeletarProjetoAsync(projetoPorId);
         }
 
-        public async Task AtulizarProjeto(int id, Projeto projeto)
+        public async Task AtulizarProjeto(int id, ProjetoUpdateDto projetoDto)
         {
             Projeto projetoPorId = await ObterProjetoPorId(id);
+
+
+            projetoPorId.name = projetoDto.name;
+            projetoPorId.description = projetoDto.description;
+            projetoPorId.color = projetoDto.color;
             
 
-            await taskFlowRepository.AtualizarProjeto(projetoPorId, projeto);
+            await taskFlowRepository.AtualizarProjeto();
         }
     }
 }

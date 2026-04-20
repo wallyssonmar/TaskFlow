@@ -15,39 +15,147 @@
   <ul class="lista-projeto">
     <li *ngFor="let projeto of projetos$ | async">
       <div class="card-projetos">
+        
         <a routerLink="/projetos" (click)="tarefaEscolhida(projeto)">
-          <div class="flex gap-3 mb-2">
-            <img
-              class="w-9 p-1 rounded-lg"
-              [style.backgroundColor]="projeto.selectedColor"
-              src="folder-white.svg"
-              alt=""
-            />
-            <h2 class="text-2xl font-medium">{{ projeto.name }}</h2>
+          <div class="flex justify-between items-center pl-2">
+            <div class="flex items-center gap-2 mb-2">
+              <img
+                class="w-9 p-1 rounded-lg"
+                [style.backgroundColor]="projeto.color"
+                src="folder-white.svg"
+                alt=""
+              />
+              <h2 class="text-xl font-medium">{{ projeto.name}}</h2>
+            </div>
+            <div class="flex w-15 h-10 gap-2">
+              <button
+                class="flex justify-center cursor-pointer rounded-lg hover:bg-gray-300 w-7"
+                (click)="
+                  abrirJanelaEditar(projeto); $event.stopPropagation(); $event.preventDefault()
+                "
+              >
+                <img class="w-6" src="pencil.svg" alt="" />
+              </button>
+              <button
+                class="flex justify-center cursor-pointer rounded-lg hover:bg-gray-300 w-7"
+                (click)="
+                  abrirConfirmacao(projeto); $event.stopPropagation(); $event.preventDefault()
+                "
+              >
+                <img class="w-6 rounded-lg" src="trash.svg" alt="" />
+              </button>
+            </div>
           </div>
-          <section>
-            <p class="text-gray-600">{{ projeto.descricao }}</p>
+
+          <section class="break-words h-10">
+            <p class="text-gray-600 ">{{ projeto.description }}</p>
           </section>
           <section class="flex flex-col mb-8 mt-6 gap-3">
             <div class="flex justify-between">
               <p class="text-gray-600">Progresso</p>
-              <p >{{ projeto.qtdTarefaConcluida }}/{{ projeto.qtdTarefa }} Tarefas</p>
+              <!-- <p >{{ qtdTarefaConcluida }}/{{ qtdTarefa}} Tarefas</p> -->
             </div>
 
             <div class="w-full h-2 bg-gray-200 rounded">
-              <div
+              <!-- <div
                 class="h-2 rounded"
-                [style.backgroundColor]="projeto.selectedColor"
-                [style.width.%]="projeto.progresso"
-              ></div>
+                [style.backgroundColor]="projeto.color"
+                [style.width.%]="(qtdTarefaConcluida / qtdTarefa) * 100"
+              ></div> -->
             </div>
           </section>
 
-          <p class="text-gray-600">{{ projeto.qtdMembros }} Membros</p>
+          <!-- <p class="text-gray-600">{{ qtdMembros }} Membros</p> -->
         </a>
       </div>
     </li>
   </ul>
+  <!-- Editar projeto -->
+  <div
+    *ngIf="mostrarJanelaEditar"
+    class="fixed inset-0 flex items-center justify-center bg-black/50"
+  >
+    <div class="bg-white rounded-xl w-125 h-150 p-6 shadow-lg relative">
+      <form [formGroup]="form" (ngSubmit)="editarProjeto(projetoSelecionado.id)">
+        <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
+        <p class=" text-sm mb-4">
+          Você está editando o projeto <strong>{{projetoSelecionado.name}}</strong>
+        </p>
+
+        <h3>Nome do Projeto</h3>
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="Ex: Trabalho, Faculdade, Pessoal"
+          class="w-full mb-3 p-2 border rounded"
+          
+        />
+
+        <h3>Descrição</h3>
+        <input
+          formControlName="description"
+          placeholder="Descreva o propósito deste projeto..."
+          class="w-full mb-3 p-2 border rounded"
+        />
+
+        <!-- Cores -->
+        <div class="lista-cores mb-5">
+          <div
+            *ngFor="let coloropt of coloropts"
+            tabindex="0"
+            class="w-25 h-10 rounded cursor-pointer borde focus:outline-none focus:ring-2 focus:ring-black"
+            [style.backgroundColor]="coloropt"
+            [class.border-black]="color === coloropt"
+            (click)="form.patchValue({ color: coloropt })"
+          ></div>
+        </div>
+
+        <!-- Botões -->
+        <div class="flex gap-10">
+          <button
+            class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+            (click)="mostrarJanelaEditar = false"
+          >
+            Cancelar
+          </button>
+          <button
+            class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
+            [disabled]="form.invalid"
+          >
+            Editar Projeto
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirmar projeto para deletar -->
+  <div
+    *ngIf="mostrarConfirmacao"
+    class="fixed inset-0 flex items-center justify-center bg-black/50"
+  >
+    <div class="flex flex-col items-center bg-background w-120 h-50 rounded-lg p-3 gap-5">
+      <h2 class="text-2xl font-bold">Apagar projeto</h2>
+      <h3 class="text-lg">
+        Tem certeza que deseja apagar o projeto <strong>{{ projetoSelecionado.name }}</strong
+        >?
+      </h3>
+      <div class="flex gap-10">
+        <button
+          class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+          (click)="cancelarConfirmacao()"
+        >
+          Cancelar
+        </button>
+        <button
+          class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+          (click)="excluirProjeto(projetoSelecionado)"
+        >
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Overlay -->
   <div *ngIf="isOpen" class="fixed inset-0 bg-black/50 flex items-center justify-center">
@@ -71,7 +179,7 @@
 
         <h3>Descrição</h3>
         <input
-          formControlName="descricao"
+          formControlName="description"
           placeholder="Descreva o propósito deste projeto..."
           class="w-full mb-3 p-2 border rounded"
         />
@@ -79,18 +187,20 @@
         <!-- Cores -->
         <div class="lista-cores mb-5">
           <div
-            *ngFor="let color of colors"
+            *ngFor="let coloropt of coloropts"
             tabindex="0"
             class="w-25 h-10 rounded cursor-pointer borde focus:outline-none focus:ring-2 focus:ring-black"
-            [style.backgroundColor]="color"
-            [class.border-black]="selectedColor === color"
-            (click)="form.patchValue({ selectedColor: color })"
+            [style.backgroundColor]="coloropt"
+            [class.border-black]="color === coloropt"
+            (click)="form.patchValue({ color: coloropt })"
           ></div>
         </div>
 
         <!-- Botões -->
         <div class="flex justify-end gap-2">
-          <button class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
+          <button type="button" class="px-4 py-2 border rounded" (click)="isOpen = false">
+            Cancelar
+          </button>
           <button
             class="px-4 py-2 bg-black text-white rounded disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
             [disabled]="form.invalid"

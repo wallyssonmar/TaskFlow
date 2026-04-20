@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
 using TaskFlowAPI.Services;
 
@@ -11,11 +12,11 @@ namespace TaskFlowAPI.Controllers
         private readonly ProjetoService taskFlowService = taskFlowService;
 
         [HttpGet]
-        public async Task<ActionResult<List<Projeto>>> GetProjetosAsync()
+        public async Task<ActionResult<List<ProjetoDto>>> GetProjetosAsync()
         {
             try
             {
-                List<Projeto> projetos = await taskFlowService.GetProjetosAsync();
+                List<ProjetoDto> projetos = await taskFlowService.GetProjetosAsync();
                 return projetos;
             }
             catch (Exception ex)
@@ -27,12 +28,12 @@ namespace TaskFlowAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Projeto>> SetProjetoAsync([FromBody] Projeto projeto)
+        public async Task<ActionResult<Projeto>> SetProjetoAsync([FromBody] ProjetoDto projeto)
         {
             try
             {
-                Projeto Retornoprojeto = await taskFlowService.SetProjetoAsync(projeto);
-                return Created("",Retornoprojeto);
+                ProjetoDto RetornoprojetoDto = await taskFlowService.SetProjetoAsync(projeto);
+                return Created("",RetornoprojetoDto);
             }
             catch (Exception ex)
             {
@@ -58,7 +59,7 @@ namespace TaskFlowAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult> AtualizarProjeto(int id, [FromBody] Projeto projeto)
+        public async Task<ActionResult> AtualizarProjeto(int id, [FromBody] ProjetoUpdateDto projeto)
         {
             try
             {

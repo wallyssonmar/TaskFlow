@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[TaskFlowAPI.Models.Projeto, TaskFlowAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[TaskFlowAPI.DTOs.ProjetoDto, TaskFlowAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "projeto",
-        "Type": "TaskFlowAPI.Models.Projeto",
+        "Type": "TaskFlowAPI.DTOs.ProjetoDto",
         "IsRequired": true
       }
     ],
@@ -76,7 +76,7 @@
       },
       {
         "Name": "projeto",
-        "Type": "TaskFlowAPI.Models.Projeto",
+        "Type": "TaskFlowAPI.DTOs.ProjetoUpdateDto",
         "IsRequired": true
       }
     ],

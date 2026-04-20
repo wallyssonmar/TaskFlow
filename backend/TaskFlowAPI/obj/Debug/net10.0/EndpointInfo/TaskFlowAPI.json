@@ -26,7 +26,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Projeto"
+                    "$ref": "#/components/schemas/ProjetoDto"
                   }
                 }
               },
@@ -34,7 +34,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Projeto"
+                    "$ref": "#/components/schemas/ProjetoDto"
                   }
                 }
               },
@@ -42,7 +42,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Projeto"
+                    "$ref": "#/components/schemas/ProjetoDto"
                   }
                 }
               }
@@ -58,17 +58,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoDto"
               }
             }
           },
@@ -147,17 +147,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Projeto"
+                "$ref": "#/components/schemas/ProjetoUpdateDto"
               }
             }
           },
@@ -198,11 +198,103 @@
           "color": {
             "type": "string"
           },
+          "tarefas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tarefa"
+            }
+          },
           "userProjetos": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UserProjeto"
             }
+          }
+        }
+      },
+      "ProjetoDto": {
+        "required": [
+          "name",
+          "description",
+          "color"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "tarefas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tarefa"
+            }
+          },
+          "userProjetos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserProjeto"
+            }
+          }
+        }
+      },
+      "ProjetoUpdateDto": {
+        "required": [
+          "name",
+          "description",
+          "color"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        }
+      },
+      "Tarefa": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "projeto_id": {
+            "$ref": "#/components/schemas/Projeto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "prioridade": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
           }
         }
       },

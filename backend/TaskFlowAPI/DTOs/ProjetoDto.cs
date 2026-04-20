@@ -1,8 +1,10 @@
-﻿namespace TaskFlowAPI.Models
+﻿using TaskFlowAPI.Models;
+
+namespace TaskFlowAPI.DTOs
 {
-    public class Projeto
+    public class ProjetoDto
     {
-        public int id { get; set; }
+        public int id {  get; set; }
         public required string name { get; set; }
         public required string description { get; set; }
         public required string color { get; set; }

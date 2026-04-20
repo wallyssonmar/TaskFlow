@@ -7,7 +7,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProjetoService {
+  
   private apiUrl = 'https://localhost:7133/api/Projeto'
+  
 
   tarefaEscolhido: any;
   
@@ -27,15 +29,20 @@ export class ProjetoService {
     return of(this.tarefaEscolhido);
   }
   setProjeto(projeto : Projeto){
-    this.projetos.push(projeto);
-    console.log(projeto)
+   return this.http.post<Projeto>(this.apiUrl,projeto);
+    
   }
 
   setTarefa(projeto: Projeto) {
     
-    return this.tarefaEscolhido = projeto
-
+    return this.tarefaEscolhido = projeto;
   }
 
+  deleteProjeto(id: number,) {
+    return this.http.delete<Projeto>(`${this.apiUrl}/${id}`);
+  }
+  editarProjeto(id: number, projeto: Projeto){
+    return this.http.put<Projeto>(`${this.apiUrl}/${id}`, projeto);
+  }
 }
 

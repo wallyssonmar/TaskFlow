@@ -1,9 +1,8 @@
 export interface Projeto {
+    id : number;
     name: string;
-    descricao: string;
-    qtdTarefa: number;
-    qtdTarefaConcluida: number;
-    progresso?: number;
-    qtdMembros: number;
-    selectedColor: string;
+    description: string;
+    color: string;
+    tarefas: [],
+    userProjetos: []
 }
