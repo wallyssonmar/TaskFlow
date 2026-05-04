@@ -18,11 +18,11 @@ body{
 
 
 @theme{
-    --color-input-background: #ffffff;
-    --color-background: #f3f3f5;
+    --color-input-background: oklch(1 0 0);
+    --color-background: oklch(0.97 0 0);
     --color-foreground: oklch(0.145 0 0);
     --color-card-foreground: oklch(0.145 0 0);
-    --color-card: #ffffff;
+    --color-card: oklch(1 0 0);
     --color-border: rgba(0, 0, 0, 0.1);
     --color-chart-1: oklch(0.646 0.222 41.116);
     --color-sidebar: oklch(0.985 0 0);

@@ -37,10 +37,26 @@ namespace TaskFlowAPI.Services
             return projetoDtos;
         }
 
+        public async Task<ProjetoDto> GetProjetoByIdAsync(int id)
+        {
+            Projeto projetoPorId = await ObterProjetoPorId(id);
+            
+
+            return new ProjetoDto
+            {
+                id = projetoPorId.id,
+                name = projetoPorId.name,
+                description = projetoPorId.description,
+                color = projetoPorId.color,
+
+            };
+        }
+
         public async Task<ProjetoDto> SetProjetoAsync(ProjetoDto projetodto)
         {
             Projeto projeto = new Projeto
             {
+                
                 name = projetodto.name,
                 description = projetodto.description,
                 color = projetodto.color,

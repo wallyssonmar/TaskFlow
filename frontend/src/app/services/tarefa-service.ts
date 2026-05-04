@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Tarefa } from '../models/tarefa';
+import { HttpClient } from '@angular/common/http';
+import { Observable, } from 'rxjs';
+import { TarefasResponse } from '../models/tarefas-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TarefaService {
-  tarefas: Tarefa[] = [
-    { name: 'Tarefa 1', descricao: 'Oloko', prioridade: 'Média', status: 'A Fazer' },
-    { name: 'Tarefa 2', descricao: 'dadasdadadaaa', prioridade: 'Alta', status: 'Em progresso' },
-    { name: 'Tarefa 3', descricao: 'loriem', prioridade: 'Média', status: 'A Fazer' },
-    { name: 'Tarefa 4', descricao: 'Olokoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', prioridade: 'Baixa', status: 'Concluído' },
-  ];
+  private apiUrl = 'https://localhost:7133/api/Tarefa';
+ 
 
-  getTarefas(){
-    
-    return {
-      afazer: this.tarefas.filter(t => t.status === 'A Fazer'),
-      progresso: this.tarefas.filter(t => t.status === 'Em progresso'),
-      concluido: this.tarefas.filter(t => t.status === 'Concluído')
-      
-    }
+  constructor(private http: HttpClient) {}
+
+  getTarefas(id : number): Observable<TarefasResponse>{
+    return this.http.get<TarefasResponse>(`${this.apiUrl}/${id}`)
+   
   }
 
-  setTarefa(tarefa: Tarefa){
-    this.tarefas = [...this.tarefas, tarefa];
+  setTarefa(tarefa: Tarefa) {
     
+    return this.http.post<Tarefa>(this.apiUrl, tarefa)
   }
 }
-

@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Projeto } from '../../models/projeto';
 import { ProjetoService } from '../../services/projeto-service';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -50,6 +51,7 @@ export class TelaDashboard {
   constructor(
     private projetoService: ProjetoService,
     private fb: FormBuilder,
+    private router: Router
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(19)]],
@@ -95,8 +97,9 @@ export class TelaDashboard {
     this.isOpen = false;
   }
 
-  tarefaEscolhida(projeto: Projeto) {
-    this.projetoService.setTarefa(projeto);
+  ProjetoEscolhido(projeto: Projeto) {
+    this.router.navigate(['/projeto', projeto.id]);
+    
   }
 
   excluirProjeto(projeto: Projeto) {

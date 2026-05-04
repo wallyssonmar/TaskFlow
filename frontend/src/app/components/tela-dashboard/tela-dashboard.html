@@ -16,7 +16,7 @@
     <li *ngFor="let projeto of projetos$ | async">
       <div class="card-projetos">
         
-        <a routerLink="/projetos" (click)="tarefaEscolhida(projeto)">
+        <a routerLink="/projetos" (click)="ProjetoEscolhido(projeto)">
           <div class="flex justify-between items-center pl-2">
             <div class="flex items-center gap-2 mb-2">
               <img

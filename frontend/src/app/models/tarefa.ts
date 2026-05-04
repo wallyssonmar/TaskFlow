@@ -1,6 +1,7 @@
 export interface Tarefa {
+    projetoId: number;
     name: string;
-    descricao: string;
+    description: string;
     prioridade: string;
     status: string;
 }

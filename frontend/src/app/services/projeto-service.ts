@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Projeto } from '../models/projeto';
 import { of,Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Tarefa } from '../models/tarefa';
+import { ProcessEnvOptions } from 'node:child_process';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,7 @@ export class ProjetoService {
   private apiUrl = 'https://localhost:7133/api/Projeto'
   
 
-  tarefaEscolhido: any;
+  projetoEscolhido: Projeto | null = null;
   
   projetos : Projeto [] = []
   /**
@@ -25,24 +27,22 @@ export class ProjetoService {
     return this.http.get<Projeto[]>(this.apiUrl);
   }
 
-  getProjetoEscolhido(): Observable<Projeto>{
-    return of(this.tarefaEscolhido);
+  getProjetoById(id: number): Observable<Projeto>{
+    return this.http.get<Projeto>(`${this.apiUrl}/${id}`);
   }
   setProjeto(projeto : Projeto){
    return this.http.post<Projeto>(this.apiUrl,projeto);
     
   }
-
-  setTarefa(projeto: Projeto) {
-    
-    return this.tarefaEscolhido = projeto;
-  }
-
   deleteProjeto(id: number,) {
     return this.http.delete<Projeto>(`${this.apiUrl}/${id}`);
   }
   editarProjeto(id: number, projeto: Projeto){
     return this.http.put<Projeto>(`${this.apiUrl}/${id}`, projeto);
   }
+
+  
+
+  
 }
 

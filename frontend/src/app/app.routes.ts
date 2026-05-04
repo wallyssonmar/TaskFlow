@@ -24,7 +24,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'dashboard', component: TelaDashboard },
-      { path: 'projetos', component: TelaTarefa }
+      { path: 'projeto/:id', component: TelaTarefa }
     ]
   }
 ];

@@ -20,7 +20,7 @@
     </button>
   </div>
 
-  <div class="grid grid-cols-3 gap-10">
+  <div *ngIf="tarefas$ | async as res" class="grid grid-cols-3 gap-10 mb-2">
     <div>
       <section class="flex items-center mb-4 gap-2">
         <div class="w-4 h-4 bg-gray-600 rounded-full"></div>
@@ -30,15 +30,15 @@
       <div class="w-full bg-gray-600 h-0.5 rounded-lg mb-6"></div>
       <div
         cdkDropList
-        [cdkDropListData]="listaAfazers"
+        [cdkDropListData]="res.todo"
         id="listaAfazers"
         [cdkDropListConnectedTo]="['listaProgressos', 'listaConcluidas']"
         (cdkDropListDropped)="drop($event)"
         class="cdkDropList"
       >
-        <div class="tarefa" *ngFor="let listaAfazer of listaAfazers" cdkDrag>
+        <div class="tarefa" *ngFor="let listaAfazer of res.todo" cdkDrag>
           <h3 class="title-tarefa">{{ listaAfazer.name }}</h3>
-          <p class="w-full h-20 text-gray-500 break-all">{{ listaAfazer.descricao }}</p>
+          <p class="w-full h-20 text-gray-500 break-all">{{ listaAfazer.description }}</p>
           <p
             class="tarefa-prioridade"
             [ngClass]="{
@@ -62,15 +62,15 @@
 
       <div
         cdkDropList
-        [cdkDropListData]="listaProgressos"
+        [cdkDropListData]="res.inProgress"
         id="listaProgressos"
         [cdkDropListConnectedTo]="['listaAfazers', 'listaConcluidas']"
         (cdkDropListDropped)="drop($event)"
         class="cdkDropList"
       >
-        <div class="tarefa" *ngFor="let listaProgresso of listaProgressos" cdkDrag>
+        <div class="tarefa" *ngFor="let listaProgresso of res.inProgress" cdkDrag>
           <h3 class="title-tarefa">{{ listaProgresso.name }}</h3>
-          <p class="w-full h-20 text-gray-500">{{ listaProgresso.descricao }}</p>
+          <p class="w-full h-20 text-gray-500">{{ listaProgresso.description }}</p>
           <p
             class="tarefa-prioridade"
             [ngClass]="{
@@ -94,15 +94,16 @@
 
       <div
         cdkDropList
-        [cdkDropListData]="listaConcluidas"
+        [cdkDropListData]="res.done"
         id="listaConcluidas"
         [cdkDropListConnectedTo]="['listaAfazers', 'listaProgressos']"
         (cdkDropListDropped)="drop($event)"
         class="cdkDropList"
       >
-        <div class="tarefa" *ngFor="let listaConcluida of listaConcluidas" cdkDrag>
+      
+        <div class="tarefa" *ngFor="let listaConcluida of res.done" cdkDrag>
           <h3 class="title-tarefa">{{ listaConcluida.name }}</h3>
-          <p class="w-full h-20 text-gray-500 break-all">{{ listaConcluida.descricao }}</p>
+          <p class="w-full h-20 text-gray-500 break-all">{{ listaConcluida.description }}</p>
           <p
             class="tarefa-prioridade"
             [ngClass]="{
@@ -122,7 +123,7 @@
       <div class="bg-white rounded-xl w-125 h-115 p-6 shadow-lg relative">
         <!-- Botão fechar -->
         <button class="absolute top-3 right-3 text-gray-500" (click)="isOpen = false">✕</button>
-        <form [formGroup]="form" (ngSubmit)="criarTarefa()">
+        <form [formGroup]="form" (ngSubmit)="criarTarefa();isOpen = false">
           <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
           <p class="text-gray-500 text-sm mb-4">
             Adicione um novo projeto para organizar suas tarefas
@@ -138,7 +139,7 @@
 
           <h3>Descrição</h3>
           <input
-            formControlName="descricao"
+            formControlName="description"
             placeholder="Adicione detalhes sobre a tarefa..."
             class="w-full mb-3 p-2 border rounded"
           />
@@ -199,10 +200,11 @@
 
           <!-- Botões -->
           <div class="flex justify-end gap-2">
-            <button class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
-            <button
-              class="px-4 py-2 bg-black text-white rounded disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
+            <button type="button" class="px-4 py-2 border rounded" (click)="isOpen = false">Cancelar</button>
+            <button type="submit"
+              class="px-4 py-2 bg-black text-white rounded hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
               [disabled]="form.invalid"
+              
             >
               Criar Projeto
             </button>

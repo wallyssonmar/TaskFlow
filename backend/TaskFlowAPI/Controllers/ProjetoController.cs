@@ -26,6 +26,21 @@ namespace TaskFlowAPI.Controllers
             }
             
         }
+        [HttpGet("{id}")]
+
+        public async Task<ActionResult<ProjetoDto>> GetProjetoById(int id)
+        {
+            try
+            {
+                ProjetoDto projeto = await taskFlowService.GetProjetoByIdAsync(id);
+                return projeto;
+            }
+            catch (KeyNotFoundException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+        }
 
         [HttpPost]
         public async Task<ActionResult<Projeto>> SetProjetoAsync([FromBody] ProjetoDto projeto)
