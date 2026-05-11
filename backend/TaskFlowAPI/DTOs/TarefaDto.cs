@@ -2,11 +2,11 @@
 {
     public class TarefaDto
     {
-        public int id { get; set; }
-        public int projetoId { get; set; }
-        public required string name { get; set; }
-        public required string description { get; set; }
-        public required string prioridade { get; set; }
-        public required string status { get; set; }
+        public int Id { get; set; }
+        public int ProjetoId { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required string Prioridade { get; set; }
+        public required string Status { get; set; }
     }
 }

@@ -159,5 +159,52 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.TarefaController",
+    "Method": "ExcluirTarefaAsync",
+    "RelativePath": "api/Tarefa/{idProjeto}/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProjeto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.TarefaController",
+    "Method": "AtualizarTarefaAsync",
+    "RelativePath": "api/Tarefa/{idProjeto}/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tarefa",
+        "Type": "TaskFlowAPI.Models.Tarefa",
+        "IsRequired": true
+      },
+      {
+        "Name": "idProjeto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

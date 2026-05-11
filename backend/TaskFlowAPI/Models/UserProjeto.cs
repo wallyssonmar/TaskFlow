@@ -2,10 +2,10 @@
 {
     public class UserProjeto
     {
-        public int id { get; set; }
-        public int user_id { get; set; }
+        public int Id { get; set; }
+        public int User_Id { get; set; }
         public required User User { get; set; }
-        public int projeto_id { get; set; }
+        public int Projeto_Id { get; set; }
 
         public required Projeto Projeto { get; set; }
     }

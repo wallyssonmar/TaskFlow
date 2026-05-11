@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskFlowAPI.DTOs;
+using TaskFlowAPI.Models;
 using TaskFlowAPI.Services;
 
 namespace TaskFlowAPI.Controllers
@@ -30,12 +31,43 @@ namespace TaskFlowAPI.Controllers
             try
             {
                 TarefaDto tarefa = await tarefaService.SetTarefaAsync(tarefaDto);
-                return Ok(tarefa);
+                return Created();
             }
             catch (Exception ex)
             {
 
                 return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("{idProjeto}/{id}")]
+
+        public async Task<ActionResult> ExcluirTarefaAsync([FromRoute] int idProjeto,[FromRoute] int id)
+        {
+            try
+            {
+                await tarefaService.ExcluirTarefaAsync(idProjeto,id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{idProjeto}/{id}")]
+
+        public async Task<ActionResult> AtualizarTarefaAsync([FromBody] Tarefa tarefa, [FromRoute] int idProjeto, [FromRoute] int id)
+        {
+            try
+            {
+                await tarefaService.AtualizarTarefaAsync(tarefa,idProjeto,id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(ex.Message);
             }
         }
     }

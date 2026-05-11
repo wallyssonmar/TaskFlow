@@ -2,8 +2,8 @@
 {
     public class ProjetoUpdateDto
     {
-        public required string name { get; set; }
-        public required string description { get; set; }
-        public required string color { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required string Color { get; set; }
     }
 }

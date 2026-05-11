@@ -10,13 +10,10 @@ namespace TaskFlowAPI.Repositories
     {
         private readonly TaskFlowApiContext context = context;
         
-        public async Task<Projeto> ObterProjetoPorId(int id)
+        public async Task<Projeto?> ObterProjetoPorId(int id)
         {
-            Projeto? projetoPorId = await context.Projetos.FindAsync(id);
-            if (projetoPorId is null)
-                throw new KeyNotFoundException($"Registro com id {id} não existe no banco.");
-
-            return projetoPorId;
+             return await context.Projetos.FindAsync(id);
+            
         }
 
         public async Task<List<Projeto>> GetProjetoAsync()
@@ -41,7 +38,7 @@ namespace TaskFlowAPI.Repositories
 
         public async Task AtualizarProjeto()
         {
-           
+            
             await context.SaveChangesAsync();
         }
     }

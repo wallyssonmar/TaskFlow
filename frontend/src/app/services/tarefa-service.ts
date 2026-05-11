@@ -8,6 +8,7 @@ import { TarefasResponse } from '../models/tarefas-response';
   providedIn: 'root',
 })
 export class TarefaService {
+  
   private apiUrl = 'https://localhost:7133/api/Tarefa';
  
 
@@ -21,5 +22,14 @@ export class TarefaService {
   setTarefa(tarefa: Tarefa) {
     
     return this.http.post<Tarefa>(this.apiUrl, tarefa)
+  }
+
+  deleteTarefa(tarefa: Tarefa, id : number){
+    return this.http.delete<Tarefa>(`${this.apiUrl}/${id}/${tarefa.id}`)
+  }
+
+  atualizarTarefa(tarefa: Tarefa, id: number) {
+    console.log(id)
+    return this.http.put<Tarefa>(`${this.apiUrl}/${tarefa.projetoId}/${id}`, tarefa)
   }
 }

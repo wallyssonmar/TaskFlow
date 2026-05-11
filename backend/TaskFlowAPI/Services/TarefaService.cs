@@ -8,6 +8,14 @@ namespace TaskFlowAPI.Services
     public class TarefaService(TarefaRepository tarefaRepository)
     {
         private readonly TarefaRepository tarefaRepository = tarefaRepository;
+
+        public async Task<Tarefa> ObterTarefaPorId(int id)
+        {
+            Tarefa tarefaPorId = await tarefaRepository.PegarTarefaPorId(id);
+            if (tarefaPorId == null)
+                throw new Exception($"O registro com o id {id} não existe no banco");
+            return tarefaPorId;
+        }
         public async Task<TarefasPorStatusDto> ListarTarefasPorStatus(int id)
         {
             var todo = await tarefaRepository.PegarTarefasPorStatus("A Fazer", id);
@@ -19,27 +27,27 @@ namespace TaskFlowAPI.Services
             {
                 Todo = todo.Select(t => new TarefaDto
                 {
-                    id = t.id,
-                    name = t.name,
-                    description = t.description,
-                    prioridade = t.prioridade,
-                    status = t.status,
+                    Id = t.Id,
+                    Name = t.Name,
+                    Description = t.Description,
+                    Prioridade = t.Prioridade,
+                    Status = t.Status,
                 }).ToList(),
                 InProgress = progress.Select(t => new TarefaDto
                 {
-                    id = t.id,
-                    name = t.name,
-                    description= t.description,
-                    prioridade = t.prioridade,
-                    status = t.status,
+                    Id = t.Id,
+                    Name = t.Name,
+                    Description= t.Description,
+                    Prioridade = t.Prioridade,
+                    Status = t.Status,
                 }).ToList(),
                 Done = done.Select(t => new TarefaDto
                 {
-                    id = t.id,
-                    name = t.name,
-                    description = t.description,
-                    prioridade = t.prioridade,
-                    status = t.status,
+                    Id = t.Id,
+                    Name = t.Name,
+                    Description = t.Description,
+                    Prioridade = t.Prioridade,
+                    Status = t.Status,
                 }).ToList()
             };
 
@@ -50,26 +58,54 @@ namespace TaskFlowAPI.Services
         {
             Tarefa tarefa = new Tarefa
             {   
-                projetoId = tarefaDto.projetoId,
-                name = tarefaDto.name,
-                description = tarefaDto.description,
-                status = tarefaDto.status,
-                prioridade = tarefaDto.prioridade
+                ProjetoId = tarefaDto.ProjetoId,
+                Name = tarefaDto.Name,
+                Description = tarefaDto.Description,
+                Status = tarefaDto.Status,
+                Prioridade = tarefaDto.Prioridade
             };
 
             Tarefa tarefaRetorno = await tarefaRepository.SetTarefaAsync(tarefa);
 
             TarefaDto tarefaDtoRetorno = new TarefaDto
             {
-                projetoId = tarefaRetorno.projetoId,
-                name = tarefaRetorno.name,
-                description = tarefaRetorno.description,
-                status = tarefaRetorno.status,
-                prioridade = tarefaRetorno.prioridade
+                ProjetoId = tarefaRetorno.ProjetoId,
+                Name = tarefaRetorno.Name,
+                Description = tarefaRetorno.Description,
+                Status = tarefaRetorno.Status,
+                Prioridade = tarefaRetorno.Prioridade
             };
             return tarefaDto;
         }
 
+        public async Task ExcluirTarefaAsync(int idProjeto, int id)
+        {
+            Tarefa tarefaPorId = await ObterTarefaPorId(id);
+            if(idProjeto != tarefaPorId.ProjetoId)
+            {
+                throw new KeyNotFoundException("Essa tarefa não pertence a esse projeto.");
+            }
+            await tarefaRepository.ExcluirTarefaPorId(tarefaPorId);
+        }
 
+        internal async Task AtualizarTarefaAsync(Tarefa tarefa, int idProjeto, int id)
+        {
+            Tarefa tarefaNoBanco = await ObterTarefaPorId(id);
+            if (idProjeto != tarefaNoBanco.ProjetoId)
+            {
+                throw new KeyNotFoundException("Essa tarefa não pertence a esse projeto.");
+
+            }
+
+
+            tarefaNoBanco.Name = tarefa.Name;
+            tarefaNoBanco.Description = tarefa.Description;
+            tarefaNoBanco.Status = tarefa.Status;
+            tarefaNoBanco.Prioridade = tarefa.Prioridade;
+            
+
+            
+            await tarefaRepository.AtualizarTarefaAsync();
+        }
     }
 }

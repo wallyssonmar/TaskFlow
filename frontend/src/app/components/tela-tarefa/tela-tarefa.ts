@@ -12,8 +12,9 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TarefaService } from '../../services/tarefa-service';
 import { Tarefa } from '../../models/tarefa';
-import { Observable, startWith, Subject, switchMap } from 'rxjs';
+import { map, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
 import { TarefasResponse } from '../../models/tarefas-response';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-tela-tarefa',
@@ -23,6 +24,10 @@ import { TarefasResponse } from '../../models/tarefas-response';
   styleUrl: './tela-tarefa.css',
 })
 export class TelaTarefa {
+  tarefa: Tarefa = {} as Tarefa;
+  tarefaSelecionada: Tarefa = {} as Tarefa;
+  mostrarConfirmacao = false;
+  mostrarJanelaEditar = false;
   idLink: number = 0;
   listaPrioridades = ['Baixa', 'Média', 'Alta'];
   listaStatus = ['A Fazer', 'Em progresso', 'Concluído'];
@@ -36,9 +41,9 @@ export class TelaTarefa {
   listaProgressos: Tarefa[] = [];
   listaConcluidas: Tarefa[] = [];
   isOpen = false;
-  projetoSelecionado: Projeto | null = null;
+  projetoSelecionado?: Projeto;
   private refresh$ = new Subject<void>();
-
+  projeto$!: Observable<Projeto>;
   tarefas$ = this.refresh$.pipe(
     startWith(void 0),
     switchMap(() => this.tarefaService.getTarefas(this.idLink)),
@@ -60,14 +65,16 @@ export class TelaTarefa {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const id = Number(params['id']);
-      this.idLink = id;
-      this.projetoService.getProjetoById(id).subscribe((projeto) => {
+    this.projeto$ = this.route.params.pipe(
+      map((params) => Number(params['id'])),
+      tap((id) => {
+        this.idLink = id;
+      }),
+      switchMap((id) => this.projetoService.getProjetoById(id)),
+      tap((projeto) => {
         this.projetoSelecionado = projeto;
-      });
-      
-    });
+      }),
+    );
   }
 
   drop(event: CdkDragDrop<Tarefa[]>) {
@@ -81,6 +88,21 @@ export class TelaTarefa {
         event.currentIndex,
       );
     }
+  }
+
+  
+  abrirConfirmacao(tarefa: Tarefa) {
+    this.mostrarConfirmacao = true;
+    this.tarefaSelecionada = tarefa;
+  }
+  cancelarConfirmacao() {
+    this.mostrarConfirmacao = false;
+    this.mostrarJanelaEditar = false;
+  }
+  abrirJanelaEditar(tarefa: Tarefa) {
+    this.tarefaSelecionada = tarefa;
+    this.form.patchValue(tarefa);
+    this.mostrarJanelaEditar = true;
   }
 
   togglePrioridade() {
@@ -107,24 +129,56 @@ export class TelaTarefa {
     });
   }
 
+  atualizarTarefa(id: number) {
+    if (this.form.valid && this.projetoSelecionado?.id){
+      const tarefa: Tarefa = {
+        ...this.form.value,
+        projetoId: this.projetoSelecionado.id,
+      };
+      
+      this.tarefaService.atualizarTarefa(tarefa, id).subscribe({
+        next: () => {
+          this.mostrarJanelaEditar = false;
+          this.refresh$.next();
+          this.form.reset();
+        },
+        error: (err) => {
+          console.error('Erro ao editar a tarefa:', err);
+        },
+      })
+    }
+  }
 
   criarTarefa() {
+    
     if (this.form.valid && this.projetoSelecionado?.id) {
       const tarefa: Tarefa = {
         ...this.form.value,
-
         projetoId: this.projetoSelecionado.id,
       };
-      console.log(tarefa);
+      
       this.tarefaService.setTarefa(tarefa).subscribe({
         next: () => {
           this.isOpen = false;
           this.refresh$.next();
-
           this.form.reset();
         },
         error: (err) => {
           console.error('Erro ao criar tarefa:', err);
+        },
+      });
+    }
+  }
+
+  excluirTarefa(tarefaEscolhida: Tarefa) {
+    if (tarefaEscolhida) {
+      this.tarefaService.deleteTarefa(tarefaEscolhida, this.idLink).subscribe({
+        next: () => {
+          this.refresh$.next();
+          this.mostrarConfirmacao = false;
+        },
+        error: (err) => {
+          console.log(err.error.errors);
         },
       });
     }

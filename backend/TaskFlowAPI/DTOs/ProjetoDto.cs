@@ -4,13 +4,13 @@ namespace TaskFlowAPI.DTOs
 {
     public class ProjetoDto
     {
-        public int id {  get; set; }
-        public required string name { get; set; }
-        public required string description { get; set; }
-        public required string color { get; set; }
+        public int Id {  get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public required string Color { get; set; }
 
-        public List<Tarefa> tarefas { get; set; } = [];
+        public List<Tarefa> Tarefas { get; set; } = [];
 
-        public List<UserProjeto> userProjetos { get; set; } = new();
+        public List<UserProjeto> UserProjetos { get; set; } = new();
     }
 }

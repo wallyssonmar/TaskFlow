@@ -18,7 +18,7 @@ namespace TaskFlowAPI.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<UserProjeto>()
-                .HasKey(up => new { up.user_id, up.projeto_id });
+                .HasKey(up => new { up.User_Id, up.Projeto_Id });
         }
     }
 }

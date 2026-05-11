@@ -27,10 +27,10 @@ namespace TaskFlowAPI.Services
             {
                 projetoDtos.Add(new ProjetoDto
                 {
-                    id = projeto.id,
-                    name = projeto.name,
-                    description = projeto.description,
-                    color = projeto.color,
+                    Id = projeto.Id,
+                    Name = projeto.Name,
+                    Description = projeto.Description,
+                    Color = projeto.Color,
                 });
                    
             }
@@ -44,10 +44,10 @@ namespace TaskFlowAPI.Services
 
             return new ProjetoDto
             {
-                id = projetoPorId.id,
-                name = projetoPorId.name,
-                description = projetoPorId.description,
-                color = projetoPorId.color,
+                Id = projetoPorId.Id,
+                Name = projetoPorId.Name,
+                Description = projetoPorId.Description,
+                Color = projetoPorId.Color,
 
             };
         }
@@ -57,9 +57,9 @@ namespace TaskFlowAPI.Services
             Projeto projeto = new Projeto
             {
                 
-                name = projetodto.name,
-                description = projetodto.description,
-                color = projetodto.color,
+                Name = projetodto.Name,
+                Description = projetodto.Description,
+                Color = projetodto.Color,
 
             };
             Projeto retornoProjeto = await taskFlowRepository.SetProjetoAsync(projeto);
@@ -67,10 +67,10 @@ namespace TaskFlowAPI.Services
 
             return new ProjetoDto
             {   
-                id = retornoProjeto.id,
-                name = retornoProjeto.name,
-                description = retornoProjeto.description,
-                color = retornoProjeto.color,
+                Id = retornoProjeto.Id,
+                Name = retornoProjeto.Name,
+                Description = retornoProjeto.Description,
+                Color = retornoProjeto.Color,
             };
         }
 
@@ -87,9 +87,9 @@ namespace TaskFlowAPI.Services
             Projeto projetoPorId = await ObterProjetoPorId(id);
 
 
-            projetoPorId.name = projetoDto.name;
-            projetoPorId.description = projetoDto.description;
-            projetoPorId.color = projetoDto.color;
+            projetoPorId.Name = projetoDto.Name;
+            projetoPorId.Description = projetoDto.Description;
+            projetoPorId.Color = projetoDto.Color;
             
 
             await taskFlowRepository.AtualizarProjeto();
