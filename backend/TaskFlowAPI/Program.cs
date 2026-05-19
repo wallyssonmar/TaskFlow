@@ -21,13 +21,19 @@ builder.Services.AddDbContext<TaskFlowApiContext>(opt => opt.UseNpgsql(stringDeC
 builder.Services.AddScoped<ProjetoService>();
 builder.Services.AddScoped<TarefaService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthService>();
 
 //Adição dos repositórios para Injeção de dependencia
 builder.Services.AddScoped<ProjetoRepository>();
 builder.Services.AddScoped<TarefaRepository>();
 builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<AuthRepository>();
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
@@ -50,6 +56,10 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

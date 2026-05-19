@@ -131,3 +131,15 @@ D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.Extensions.
 D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.Extensions.Options.dll
 D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.Extensions.Primitives.dll
 D:\projetos\TaskFlow\backend\TaskFlowAPI\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\BCrypt-Net-Next.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+D:\projetos\TaskFlow\backend\TaskFlowAPI\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

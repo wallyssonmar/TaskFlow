@@ -8,15 +8,15 @@
     <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="registrar()">
       <div>
         <p>Nome:</p>
-        <input class="input" type="text" formControlName="nome" placeholder="Digite seu nome" />
+        <input class="input" type="text" formControlName="Name" placeholder="Digite seu nome" />
       </div>
       <div>
         <p>Email:</p>
-        <input class="input" type="email" formControlName="email" placeholder="Digite seu email" />
+        <input class="input" type="email" formControlName="Email" placeholder="Digite seu email" />
       </div>
       <div>
         <p>Senha:</p>
-        <input class="input" type="password" formControlName="senha" placeholder="Digite sua senha" />
+        <input class="input" type="password" formControlName="Password" placeholder="Digite sua senha" />
       </div>
       <div>
         <section class="flex gap-6">
@@ -27,7 +27,7 @@
         <input
         class="input"
         type="password"
-        formControlName="confirmarSenha"
+        formControlName="ConfirmPassword"
         placeholder="Confirme sua senha"
       />
       </div>          

@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "TaskFlowAPI.Controllers.AuthController",
+    "Method": "CriarUserAsync",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "TaskFlowAPI.DTOs.UserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
     "Method": "GetProjetosAsync",
     "RelativePath": "api/Projeto",

@@ -13,12 +13,7 @@ export class ProjetoService {
   private apiUrl = 'https://localhost:7133/api/Projeto'
   
 
-  projetoEscolhido: Projeto | null = null;
   
-  projetos : Projeto [] = []
-  /**
-   *
-   */
   constructor(private http: HttpClient) {}
 
   
