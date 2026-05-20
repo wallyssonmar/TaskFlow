@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "TaskFlowAPI.Controllers.AuthController",
+    "Method": "VerificarLoginAsync",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "TaskFlowAPI.DTOs.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.AuthController",
     "Method": "CriarUserAsync",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
@@ -9,7 +25,7 @@
     "Parameters": [
       {
         "Name": "user",
-        "Type": "TaskFlowAPI.DTOs.UserDto",
+        "Type": "TaskFlowAPI.DTOs.RegisterDto",
         "IsRequired": true
       }
     ],

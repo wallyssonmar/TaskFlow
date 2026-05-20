@@ -1,6 +1,6 @@
 ﻿namespace TaskFlowAPI.DTOs
 {
-    public class UserDto
+    public class RegisterDto
     {
         public required string Name { get; set; }
         public required string Email { get; set; }

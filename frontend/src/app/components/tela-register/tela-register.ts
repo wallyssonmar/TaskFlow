@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
 import { email, required } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterService } from '../../services/register-service';
+import { AuthService } from '../../services/auth-service';
+
 
 @Component({
   selector: 'app-tela-register',
@@ -16,7 +17,7 @@ import { RegisterService } from '../../services/register-service';
 export class TelaRegister {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService,private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService,private router: Router) {
     this.form = this.fb.group(
       {
         Name: ['', Validators.required],
@@ -32,7 +33,7 @@ export class TelaRegister {
 
   registrar() {
     if (this.form.valid) {
-      this.registerService.setRegisterUser(this.form.value).subscribe({
+      this.authService.setRegisterUser(this.form.value).subscribe({
         next : () => {
           this.router.navigate(['/login'])
         },error: (err) => {

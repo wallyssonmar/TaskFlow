@@ -4,11 +4,12 @@ import { Component } from '@angular/core';
 
 import { email, required } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-tela-login',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ],
   templateUrl: './tela-login.html',
   styleUrl: './tela-login.css',
 })
@@ -16,19 +17,26 @@ export class TelaLogin {
   form: FormGroup;
   
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
      
-      email: ['',[Validators.required, Validators.email]],
-      senha: ['',[Validators.required,Validators.minLength(3)]],
+      Email: ['',[Validators.required, Validators.email]],
+      Password: ['',[Validators.required,Validators.minLength(3)]],
       });
     
   }
 
-  registrar() {
-    if (this.form.valid) {
-      console.log(this.form.value);
-      console.log("passou aqui");
+  login() {
+    
+      if (this.form.valid) {
+      this.authService.VerificarLogin(this.form.value).subscribe({
+        next : () => {
+          this.router.navigate(['/dashboard'])
+        },error: (err) => {
+          console.log("Erro ao registrar", err)
+        }
+      })
+    
       
     }
   }
