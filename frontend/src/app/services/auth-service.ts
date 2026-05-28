@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Register } from '../models/register';
 import { Login } from '../models/login';
+import { response } from 'express';
+import { LoginReponse } from '../models/Login-reponse';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +20,11 @@ export class AuthService {
     return this.http.post<Register>(`${this.apiUrl}/register`,registerUser)
   }
   VerificarLogin(login: Login) {
-    return this.http.post<Login>(`${this.apiUrl}/login`,login)
+    return this.http.post<LoginReponse>(`${this.apiUrl}/login`,login).pipe(
+      tap((response) => {
+        localStorage.setItem("token", response.token)
+      })
+    )
+
   }
 }

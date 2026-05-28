@@ -4,9 +4,10 @@ using TaskFlowAPI.Repositories;
 
 namespace TaskFlowAPI.Services
 {
-    public class AuthService(AuthRepository authRepository)
+    public class AuthService(AuthRepository authRepository, TokenService tokenService)
     {
         private readonly AuthRepository authRepository = authRepository;
+        private readonly TokenService tokenService = tokenService;
 
         public async Task<User> GetUserAsync(string email)
         {
@@ -35,7 +36,7 @@ namespace TaskFlowAPI.Services
             await authRepository.CriarUserAsync(userWithHash);
         }
 
-        public async Task VerificarLoginAsync(LoginDto loginDto)
+        public async Task<string> VerificarLoginAsync(LoginDto loginDto)
         {
             var usuario = await GetUserAsync(loginDto.Email);
             if (usuario == null)
@@ -47,6 +48,7 @@ namespace TaskFlowAPI.Services
                 throw new Exception("Senha inválida");
             }
 
+            return tokenService.GenerateToken(usuario);
         }
 
 

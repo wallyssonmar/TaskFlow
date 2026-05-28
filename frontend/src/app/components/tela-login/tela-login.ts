@@ -30,7 +30,8 @@ export class TelaLogin {
     
       if (this.form.valid) {
       this.authService.VerificarLogin(this.form.value).subscribe({
-        next : () => {
+        next : (response) => {
+          console.log(response)
           this.router.navigate(['/dashboard'])
         },error: (err) => {
           console.log("Erro ao registrar", err)

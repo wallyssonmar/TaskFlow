@@ -4,6 +4,7 @@ using TaskFlowAPI.Repositories;
 using TaskFlowAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<TokenService>();
 
 // Add services to the container.
 

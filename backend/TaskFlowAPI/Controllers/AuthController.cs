@@ -33,8 +33,11 @@ namespace TaskFlowAPI.Controllers
         {
             try
             {
-                await authService.VerificarLoginAsync(loginDto);
-                return Ok();
+                var token = await authService.VerificarLoginAsync(loginDto);
+                return Ok(new
+                {
+                    token
+                });
             }
             catch (Exception ex)
             {
