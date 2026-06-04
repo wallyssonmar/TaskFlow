@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
 using TaskFlowAPI.Services;
@@ -26,24 +27,31 @@ namespace TaskFlowAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        
         [HttpPost("login")]
 
-        public async Task<ActionResult> VerificarLoginAsync([FromBody] LoginDto loginDto)
+        public async Task<ActionResult<LoginResponse>> VerificarLoginAsync([FromBody] LoginDto loginDto)
         {
             try
             {
-                var token = await authService.VerificarLoginAsync(loginDto);
-                return Ok(new
-                {
-                    token
-                });
+                LoginResponse token = await authService.VerificarLoginAsync(loginDto);
+                return Ok(token);
+               
+                    
+                
             }
             catch (Exception ex)
             {
 
                 return BadRequest(ex.Message);
             }
+        }
+
+        [Authorize]
+        [HttpGet("teste")]
+        public IActionResult Teste()
+        {
+            return Ok("Você está autenticado!");
         }
     }
 }

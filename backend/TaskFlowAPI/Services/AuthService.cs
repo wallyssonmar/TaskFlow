@@ -1,12 +1,14 @@
-﻿using TaskFlowAPI.DTOs;
+﻿using TaskFlowAPI.Authentication;
+using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
 using TaskFlowAPI.Repositories;
 
 namespace TaskFlowAPI.Services
 {
-    public class AuthService(AuthRepository authRepository, TokenService tokenService)
+    public class AuthService(AuthRepository authRepository, TokenService tokenService, RefreshTokenRepository refreshTokenRepository)
     {
         private readonly AuthRepository authRepository = authRepository;
+        private readonly RefreshTokenRepository refreshTokenRepository = refreshTokenRepository;
         private readonly TokenService tokenService = tokenService;
 
         public async Task<User> GetUserAsync(string email)
@@ -36,7 +38,7 @@ namespace TaskFlowAPI.Services
             await authRepository.CriarUserAsync(userWithHash);
         }
 
-        public async Task<string> VerificarLoginAsync(LoginDto loginDto)
+        public async Task<LoginResponse> VerificarLoginAsync(LoginDto loginDto)
         {
             var usuario = await GetUserAsync(loginDto.Email);
             if (usuario == null)
@@ -48,7 +50,24 @@ namespace TaskFlowAPI.Services
                 throw new Exception("Senha inválida");
             }
 
-            return tokenService.GenerateToken(usuario);
+            var token = tokenService.GenerateToken(usuario);
+            var refreshToken = tokenService.GenerateRefreshToken();
+
+            var refreshTokenEntity = new RefreshToken
+            {
+                Token = refreshToken,
+                UserId = usuario.Id,
+                ExpirationDate = DateTime.UtcNow.AddDays(7)
+            };
+
+            await refreshTokenRepository.AddAsync(refreshTokenEntity);
+
+            return new LoginResponse
+            {
+                Token = token,
+                RefreshToken = refreshToken
+
+            };
         }
 
 

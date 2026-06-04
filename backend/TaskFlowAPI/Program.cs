@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using TaskFlowAPI.Authentication;
 using TaskFlowAPI.Data;
 using TaskFlowAPI.Repositories;
 using TaskFlowAPI.Services;
@@ -9,6 +13,19 @@ builder.Services.AddTransient<TokenService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+
+    options.TokenValidationParameters = TokenHelpers.GetTokenValidationParameters(builder.Configuration);
+   
+});
+
+builder.Services.AddAuthentication();
 
 string? stringDeConexao = builder.Configuration.GetConnectionString("StringConexaoBanco");
 if(stringDeConexao is null)
@@ -29,6 +46,7 @@ builder.Services.AddScoped<ProjetoRepository>();
 builder.Services.AddScoped<TarefaRepository>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<AuthRepository>();
+builder.Services.AddScoped<RefreshTokenRepository>();
 
 builder.Services.AddOpenApi();
 
@@ -66,6 +84,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowAngular");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

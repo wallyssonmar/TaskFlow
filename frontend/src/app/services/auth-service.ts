@@ -10,21 +10,20 @@ import { tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  
-  private apiUrl = 'https://localhost:7133/api/Auth'
+  private apiUrl = 'https://localhost:7133/api/Auth';
 
   constructor(private http: HttpClient) {}
 
-  setRegisterUser(registerUser: Register){
-    console.log(registerUser)  
-    return this.http.post<Register>(`${this.apiUrl}/register`,registerUser)
+  setRegisterUser(registerUser: Register) {
+    console.log(registerUser);
+    return this.http.post<Register>(`${this.apiUrl}/register`, registerUser);
   }
   VerificarLogin(login: Login) {
-    return this.http.post<LoginReponse>(`${this.apiUrl}/login`,login).pipe(
+    return this.http.post<LoginReponse>(`${this.apiUrl}/login`, login).pipe(
       tap((response) => {
-        localStorage.setItem("token", response.token)
-      })
-    )
-
+        localStorage.setItem('token', response.token);
+        console.log(response);
+      }),
+    );
   }
 }
