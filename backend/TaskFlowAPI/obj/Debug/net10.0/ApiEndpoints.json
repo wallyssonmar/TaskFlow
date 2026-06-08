@@ -27,6 +27,32 @@
   },
   {
     "ContainingType": "TaskFlowAPI.Controllers.AuthController",
+    "Method": "RefreshTokenAsync",
+    "RelativePath": "api/Auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "refreshTokenResponse",
+        "Type": "TaskFlowAPI.DTOs.RefreshTokenResponseDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TaskFlowAPI.Models.LoginResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.AuthController",
     "Method": "CriarUserAsync",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",

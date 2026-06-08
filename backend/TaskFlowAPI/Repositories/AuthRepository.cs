@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using TaskFlowAPI.Data;
 using TaskFlowAPI.Models;
 
@@ -16,6 +17,11 @@ namespace TaskFlowAPI.Repositories
         internal async Task<User?> GetUserAsync(string email)
         {
             return await taskFlowApiContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+        }
+
+        public async Task<User?> GetUserByIdAsync(int userId)
+        {
+            return await taskFlowApiContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
         }
     }
 }

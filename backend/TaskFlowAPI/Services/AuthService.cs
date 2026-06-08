@@ -53,14 +53,7 @@ namespace TaskFlowAPI.Services
             var token = tokenService.GenerateToken(usuario);
             var refreshToken = tokenService.GenerateRefreshToken();
 
-            var refreshTokenEntity = new RefreshToken
-            {
-                Token = refreshToken,
-                UserId = usuario.Id,
-                ExpirationDate = DateTime.UtcNow.AddDays(7)
-            };
-
-            await refreshTokenRepository.AddAsync(refreshTokenEntity);
+            await tokenService.SetRefreshTokenAsync(refreshToken, usuario.Id);
 
             return new LoginResponse
             {
@@ -70,6 +63,11 @@ namespace TaskFlowAPI.Services
             };
         }
 
+        public async Task<LoginResponse?> RefreshTokenAsync(string refreshToken)
+        {                    
 
+            return await tokenService.ReNewRefreshToken(refreshToken);
+
+        }
     }
 }
