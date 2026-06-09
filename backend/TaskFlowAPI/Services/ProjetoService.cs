@@ -4,13 +4,14 @@ using TaskFlowAPI.Repositories;
 
 namespace TaskFlowAPI.Services
 {
-    public class ProjetoService(ProjetoRepository taskFlowRepository)
+    public class ProjetoService(ProjetoRepository projetoRepository, AuthRepository authRepository)
     {
-        private readonly ProjetoRepository taskFlowRepository = taskFlowRepository;
-        
+        private readonly ProjetoRepository projetoRepository = projetoRepository;
+        private readonly AuthRepository authRepository = authRepository;
+
         public async Task<Projeto> ObterProjetoPorId(int id)
         {
-            Projeto? projeto = await taskFlowRepository.ObterProjetoPorId(id);
+            Projeto? projeto = await projetoRepository.ObterProjetoPorId(id);
             if (projeto == null)
             {
                 throw new KeyNotFoundException($"Registro com id {id} não existe no banco.");
@@ -20,7 +21,7 @@ namespace TaskFlowAPI.Services
         }
         public async Task<List<ProjetoDto>> GetProjetosAsync()
         {
-            List<Projeto> projetos = await taskFlowRepository.GetProjetoAsync();
+            List<Projeto> projetos = await projetoRepository.GetProjetoAsync();
             List<ProjetoDto> projetoDtos = new List<ProjetoDto>();
 
             foreach (var projeto in projetos)
@@ -52,7 +53,7 @@ namespace TaskFlowAPI.Services
             };
         }
 
-        public async Task<ProjetoDto> SetProjetoAsync(ProjetoDto projetodto)
+        /*public async Task<ProjetoDto> SetProjetoAsync(ProjetoDto projetodto)
         {
             Projeto projeto = new Projeto
             {
@@ -62,7 +63,7 @@ namespace TaskFlowAPI.Services
                 Color = projetodto.Color,
 
             };
-            Projeto retornoProjeto = await taskFlowRepository.SetProjetoAsync(projeto);
+            Projeto retornoProjeto = await projetoRepository.SetProjetoAsync(projeto);
 
 
             return new ProjetoDto
@@ -72,14 +73,14 @@ namespace TaskFlowAPI.Services
                 Description = retornoProjeto.Description,
                 Color = retornoProjeto.Color,
             };
-        }
+        }*/
 
         public async Task DeletarProjetoAsync(int id)
         {
             Projeto projetoPorId = await ObterProjetoPorId(id);
             if (projetoPorId is null)
                 throw new KeyNotFoundException($"Registro com id {id} não existe no banco.");
-            await taskFlowRepository.DeletarProjetoAsync(projetoPorId);
+            await projetoRepository.DeletarProjetoAsync(projetoPorId);
         }
 
         public async Task AtulizarProjeto(int id, ProjetoUpdateDto projetoDto)
@@ -92,7 +93,34 @@ namespace TaskFlowAPI.Services
             projetoPorId.Color = projetoDto.Color;
             
 
-            await taskFlowRepository.AtualizarProjeto();
+            await projetoRepository.AtualizarProjeto();
+        }
+
+        public async Task<UserProjetoResponseDto> SetUserProjetoAsync(Projeto projeto, int userId)
+        {
+            User? user = await authRepository.GetUserByIdAsync(userId);
+
+            if (user is null)
+                throw new KeyNotFoundException($"Registro com id {user} não existe no banco.");
+
+            Projeto projetoBanco = await projetoRepository.SetProjetoAsync(projeto);
+
+            UserProjeto userProjeto = new UserProjeto
+            {
+                User_Id = user.Id,
+                User = user,
+                Projeto_Id = projetoBanco.Id,
+                Projeto = projetoBanco
+
+            };
+
+            UserProjeto userProjetoResponse = await projetoRepository.SetUserProjeto(userProjeto);
+
+            return new UserProjetoResponseDto
+            {
+                UserId = userProjetoResponse.User_Id,
+                ProjetoId = userProjetoResponse.Projeto_Id
+            };
         }
     }
 }

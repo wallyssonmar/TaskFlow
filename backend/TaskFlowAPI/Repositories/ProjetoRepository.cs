@@ -6,40 +6,48 @@ using TaskFlowAPI.Models;
 
 namespace TaskFlowAPI.Repositories
 {
-    public class ProjetoRepository(TaskFlowApiContext context)
+    public class ProjetoRepository(TaskFlowApiContext taskFlowContext)
     {
-        private readonly TaskFlowApiContext context = context;
+        private readonly TaskFlowApiContext taskFlowContext = taskFlowContext;
         
         public async Task<Projeto?> ObterProjetoPorId(int id)
         {
-             return await context.Projetos.FindAsync(id);
+             return await taskFlowContext.Projetos.FindAsync(id);
             
         }
 
         public async Task<List<Projeto>> GetProjetoAsync()
         {
-           List<Projeto> projetos = await context.Projetos.ToListAsync();
+           List<Projeto> projetos = await taskFlowContext.Projetos.ToListAsync();
            return projetos;
         }
 
         public async Task<Projeto> SetProjetoAsync(Projeto projeto)
         {
-            EntityEntry<Projeto> retornoProjeto = await context.Projetos.AddAsync(projeto);
-            await context.SaveChangesAsync();
+            EntityEntry<Projeto> retornoProjeto = await taskFlowContext.Projetos.AddAsync(projeto);
+            await taskFlowContext.SaveChangesAsync();
 
             return retornoProjeto.Entity;
         }
 
         public async Task DeletarProjetoAsync(Projeto projeto)
         {
-            context.Projetos.Remove(projeto);
-            await context.SaveChangesAsync();
+            taskFlowContext.Projetos.Remove(projeto);
+            await taskFlowContext.SaveChangesAsync();
         }
 
         public async Task AtualizarProjeto()
         {
             
-            await context.SaveChangesAsync();
+            await taskFlowContext.SaveChangesAsync();
+        }
+
+        public async Task<UserProjeto> SetUserProjeto(UserProjeto userProjeto)
+        {
+            EntityEntry<UserProjeto> retornoUserProjeto = await taskFlowContext.UserProjetos.AddAsync(userProjeto);
+            await taskFlowContext.SaveChangesAsync();
+            return retornoUserProjeto.Entity;
+            
         }
     }
 }

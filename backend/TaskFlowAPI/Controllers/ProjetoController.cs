@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
 using TaskFlowAPI.Services;
@@ -7,83 +9,83 @@ namespace TaskFlowAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProjetoController(ProjetoService taskFlowService): ControllerBase
+    public class ProjetoController(ProjetoService projetoService): ControllerBase
     {
-        private readonly ProjetoService taskFlowService = taskFlowService;
+        private readonly ProjetoService projetoService = projetoService;
 
         [HttpGet]
         public async Task<ActionResult<List<ProjetoDto>>> GetProjetosAsync()
         {
             try
             {
-                List<ProjetoDto> projetos = await taskFlowService.GetProjetosAsync();
+                List<ProjetoDto> projetos = await projetoService.GetProjetosAsync();
                 return projetos;
             }
             catch (Exception ex)
             {
-
                 return NotFound(ex.Message);
-            }
-            
+            } 
         }
-        [HttpGet("{id}")]
+
+        
+
+        [HttpGet("{id:int}")]
 
         public async Task<ActionResult<ProjetoDto>> GetProjetoById(int id)
         {
             try
             {
-                ProjetoDto projeto = await taskFlowService.GetProjetoByIdAsync(id);
+                ProjetoDto projeto = await projetoService.GetProjetoByIdAsync(id);
                 return projeto;
             }
             catch (KeyNotFoundException ex)
             {
-
                 return NotFound(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpPost]
-        public async Task<ActionResult<Projeto>> SetProjetoAsync([FromBody] ProjetoDto projeto)
+        public async Task<ActionResult<UserProjetoResponseDto>> SetProjetoAsync([FromBody] Projeto projeto)
         {
             try
-            {
-                ProjetoDto RetornoprojetoDto = await taskFlowService.SetProjetoAsync(projeto);
-                return Created("",RetornoprojetoDto);
+            {   
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+                //ProjetoDto RetornoprojetoDto = await projetoService.SetProjetoAsync(projeto);
+                UserProjetoResponseDto userProjeto = await projetoService.SetUserProjetoAsync(projeto, userId);
+                
+                return Created("",userProjeto);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-                
             }
-            
         }
 
         [HttpDelete("{id}")]
-
         public async Task<ActionResult> DeletarProjetoAsync(int id)
         {
             try
             {
-                await taskFlowService.DeletarProjetoAsync(id);
+                await projetoService.DeletarProjetoAsync(id);
                 return Ok();
             }
             catch (Exception ex)
             {
-
                 return NotFound(ex.Message);
             }
         }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> AtualizarProjeto(int id, [FromBody] ProjetoUpdateDto projeto)
         {
             try
             {
-                await taskFlowService.AtulizarProjeto(id, projeto);
+                await projetoService.AtulizarProjeto(id, projeto);
                 return NoContent();
             }
             catch (Exception ex)
             {
-
                 return NotFound(ex.Message);
             }
         }

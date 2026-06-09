@@ -22,7 +22,6 @@ export class AuthService {
     return this.http.post<LoginReponse>(`${this.apiUrl}/login`, login).pipe(
       tap((response) => {
         localStorage.setItem('token', response.token);
-        console.log(response);
       }),
     );
   }

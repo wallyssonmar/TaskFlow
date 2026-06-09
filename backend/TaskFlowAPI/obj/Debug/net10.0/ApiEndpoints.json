@@ -107,13 +107,13 @@
     "Parameters": [
       {
         "Name": "projeto",
-        "Type": "TaskFlowAPI.DTOs.ProjetoDto",
+        "Type": "TaskFlowAPI.Models.Projeto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "TaskFlowAPI.Models.Projeto",
+        "Type": "TaskFlowAPI.DTOs.UserProjetoResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
