@@ -19,23 +19,24 @@ namespace TaskFlowAPI.Services
             }
             return projeto;
         }
-        public async Task<List<ProjetoDto>> GetProjetosAsync()
+        public async Task<List<ProjetoDto>> GetProjetosAsync(int userId)
         {
-            List<Projeto> projetos = await projetoRepository.GetProjetoAsync();
-            List<ProjetoDto> projetoDtos = new List<ProjetoDto>();
+            var user = await authRepository.GetUserByIdAsync(userId);
+            if (user is null)
+                return null;
 
-            foreach (var projeto in projetos)
+
+            List<Projeto> projetos = await projetoRepository.GetProjetoAsync(userId);
+            
+
+            return projetos.Select(projeto => new ProjetoDto
             {
-                projetoDtos.Add(new ProjetoDto
-                {
-                    Id = projeto.Id,
-                    Name = projeto.Name,
-                    Description = projeto.Description,
-                    Color = projeto.Color,
-                });
-                   
-            }
-            return projetoDtos;
+                Id = projeto.Id,
+                Name = projeto.Name,
+                Description = projeto.Description,
+                Color = projeto.Color
+
+            }).ToList();
         }
 
         public async Task<ProjetoDto> GetProjetoByIdAsync(int id)

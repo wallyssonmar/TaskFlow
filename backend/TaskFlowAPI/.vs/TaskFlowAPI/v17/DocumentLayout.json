@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:controllers\\projetocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\repositories\\projetorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:repositories\\projetorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\dtos\\userprojetoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,26 +75,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ProjetoRepository.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\ProjetoRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\ProjetoRepository.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\ProjetoRepository.cs",
               "RelativeToolTip": "Repositories\\ProjetoRepository.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowDAAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAMwBUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T20:27:17.459Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProjetoService.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\ProjetoService.cs",
               "RelativeDocumentMoniker": "Services\\ProjetoService.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\ProjetoService.cs",
               "RelativeToolTip": "Services\\ProjetoService.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAEwG8AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwB0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T19:27:19.808Z",
               "EditorCaption": ""
@@ -107,7 +107,7 @@
               "RelativeDocumentMoniker": "Controllers\\ProjetoController.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\ProjetoController.cs",
               "RelativeToolTip": "Controllers\\ProjetoController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAA5wC8AAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBYAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T13:03:39.814Z",
               "EditorCaption": ""
@@ -122,8 +122,7 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-09T12:15:28.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-09T12:15:28.161Z"
             },
             {
               "$type": "Document",
@@ -135,8 +134,7 @@
               "RelativeToolTip": "Repositories\\RefreshTokenRepository.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-08T12:43:48.002Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-08T12:43:48.002Z"
             },
             {
               "$type": "Document",
@@ -148,8 +146,7 @@
               "RelativeToolTip": "Authentication\\TokenService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwB4AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T17:49:25.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T17:49:25.227Z"
             },
             {
               "$type": "Document",
@@ -161,8 +158,7 @@
               "RelativeToolTip": "Repositories\\AuthRepository.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAnwBUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T17:28:59.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T17:28:59.613Z"
             },
             {
               "$type": "Document",

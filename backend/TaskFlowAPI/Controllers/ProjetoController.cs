@@ -12,13 +12,15 @@ namespace TaskFlowAPI.Controllers
     public class ProjetoController(ProjetoService projetoService): ControllerBase
     {
         private readonly ProjetoService projetoService = projetoService;
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<ProjetoDto>>> GetProjetosAsync()
         {
             try
             {
-                List<ProjetoDto> projetos = await projetoService.GetProjetosAsync();
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+                List<ProjetoDto> projetos = await projetoService.GetProjetosAsync(userId);
                 return projetos;
             }
             catch (Exception ex)

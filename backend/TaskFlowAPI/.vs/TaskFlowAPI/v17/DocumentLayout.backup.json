@@ -15,6 +15,10 @@
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:repositories\\projetorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\dtos\\userprojetoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:dtos\\userprojetoresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:repositories\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -50,11 +54,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserProjetoResponseDto.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\UserProjetoResponseDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\UserProjetoResponseDto.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\UserProjetoResponseDto.cs",
+              "RelativeToolTip": "DTOs\\UserProjetoResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T20:55:29.772Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -77,7 +94,7 @@
               "RelativeDocumentMoniker": "Services\\ProjetoService.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\ProjetoService.cs",
               "RelativeToolTip": "Services\\ProjetoService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAnwDgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAEwG8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T19:27:19.808Z",
               "EditorCaption": ""
@@ -90,14 +107,14 @@
               "RelativeDocumentMoniker": "Controllers\\ProjetoController.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\ProjetoController.cs",
               "RelativeToolTip": "Controllers\\ProjetoController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAnwDgAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAA5wC8AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-09T13:03:39.814Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -110,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "RefreshTokenRepository.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\RefreshTokenRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\RefreshTokenRepository.cs",
@@ -123,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "TokenService.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Authentication\\TokenService.cs",
               "RelativeDocumentMoniker": "Authentication\\TokenService.cs",
@@ -136,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AuthRepository.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\AuthRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\AuthRepository.cs",
@@ -149,7 +166,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "Services\\AuthService.cs",
@@ -161,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -173,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

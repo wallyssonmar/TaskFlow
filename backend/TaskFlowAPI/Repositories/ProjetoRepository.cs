@@ -16,10 +16,12 @@ namespace TaskFlowAPI.Repositories
             
         }
 
-        public async Task<List<Projeto>> GetProjetoAsync()
+        public async Task<List<Projeto>> GetProjetoAsync(int userId)
         {
-           List<Projeto> projetos = await taskFlowContext.Projetos.ToListAsync();
-           return projetos;
+            return await taskFlowContext.UserProjetos
+                 .Where(x => x.User_Id == userId)
+                 .Select(x => x.Projeto)
+                 .ToListAsync();
         }
 
         public async Task<Projeto> SetProjetoAsync(Projeto projeto)
