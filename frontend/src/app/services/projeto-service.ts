@@ -14,9 +14,7 @@ export class ProjetoService {
   constructor(private http: HttpClient) {}
 
   getProjetos() {
-    return this.http.get<Projeto[]>(this.apiUrl).subscribe((result) => {
-      console.log(result);
-    });
+    return this.http.get<Projeto[]>(this.apiUrl);
   }
 
   getProjetoById(id: number): Observable<Projeto> {

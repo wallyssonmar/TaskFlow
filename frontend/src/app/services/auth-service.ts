@@ -22,7 +22,13 @@ export class AuthService {
     return this.http.post<LoginReponse>(`${this.apiUrl}/login`, login).pipe(
       tap((response) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('refreshToken', response.refreshToken);
+        console.log(response);
       }),
     );
+  }
+
+  refreshToken(refreshToken: string) {
+    return this.http.post<LoginReponse>(`${this.apiUrl}/refresh-token`, { refreshToken });
   }
 }

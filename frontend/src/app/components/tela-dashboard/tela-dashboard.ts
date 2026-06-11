@@ -30,8 +30,8 @@ export class TelaDashboard {
   isOpen = false;
   mostrarConfirmacao = false;
   mostrarJanelaEditar = false;
-  projetoSelecionado : any = null;
-  
+  projetoSelecionado: any = null;
+
   coloropts = [
     '#3B82F6',
     '#8B5CF6',
@@ -51,7 +51,7 @@ export class TelaDashboard {
   constructor(
     private projetoService: ProjetoService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(19)]],
@@ -59,25 +59,23 @@ export class TelaDashboard {
       color: ['', Validators.required],
     });
   }
-  abrirJanelaEditar(projeto: Projeto){
-  this.projetoSelecionado = projeto;
-
-  this.form.patchValue(projeto);
-
-  this.mostrarJanelaEditar = true;
-}
-  cancelarJanelaEditar(){
-    this.mostrarJanelaEditar = false;
-    
-  }
-
-  abrirConfirmacao(projeto: Projeto){
-    this.mostrarConfirmacao = true;
+  abrirJanelaEditar(projeto: Projeto) {
     this.projetoSelecionado = projeto;
 
+    this.form.patchValue(projeto);
+
+    this.mostrarJanelaEditar = true;
+  }
+  cancelarJanelaEditar() {
+    this.mostrarJanelaEditar = false;
   }
 
-  cancelarConfirmacao(){
+  abrirConfirmacao(projeto: Projeto) {
+    this.mostrarConfirmacao = true;
+    this.projetoSelecionado = projeto;
+  }
+
+  cancelarConfirmacao() {
     this.mostrarConfirmacao = false;
     this.projetoSelecionado = null;
   }
@@ -89,7 +87,7 @@ export class TelaDashboard {
           this.refresh$.next();
         },
         error: (err) => {
-          console.log(err.error.errors);
+          console.log(err);
         },
       });
     }
@@ -99,7 +97,6 @@ export class TelaDashboard {
 
   ProjetoEscolhido(projeto: Projeto) {
     this.router.navigate(['/projeto', projeto.id]);
-    
   }
 
   excluirProjeto(projeto: Projeto) {
@@ -116,20 +113,19 @@ export class TelaDashboard {
     }
   }
 
-  editarProjeto(id: number){
-    
+  editarProjeto(id: number) {
     const projeto: Projeto = this.form.value;
     this.mostrarJanelaEditar = false;
-    console.log(id, projeto)
-    if(projeto){
+    console.log(id, projeto);
+    if (projeto) {
       this.projetoService.editarProjeto(id, projeto).subscribe({
-        next:() => {
+        next: () => {
           this.refresh$.next();
         },
         error: (err) => {
           console.log(err.error.errors);
-        }
-      })
+        },
+      });
     }
   }
 }
