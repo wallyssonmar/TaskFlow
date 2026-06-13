@@ -34,7 +34,7 @@ export class TelaLogin {
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          console.log('Erro ao registrar', err);
+          console.log('Erro ao entrar', err);
         },
       });
     }

@@ -3,7 +3,6 @@ import { Projeto } from '../models/projeto';
 import { of, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Tarefa } from '../models/tarefa';
-import { ProcessEnvOptions } from 'node:child_process';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, inject, PLATFORM_ID } from '@angular/core';
 import { Projeto } from '../../models/projeto';
 import { ProjetoService } from '../../services/projeto-service';
 import { RouterLink } from '@angular/router';
@@ -11,8 +11,10 @@ import {
   Validators,
   ɵInternalFormsSharedModule,
 } from '@angular/forms';
-import { Observable, startWith, Subject, switchMap } from 'rxjs';
-import { error } from 'node:console';
+import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
+
+import { UserService } from '../../services/user-service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-tela-dashboard',
@@ -22,9 +24,13 @@ import { error } from 'node:console';
 })
 export class TelaDashboard {
   form: FormGroup;
+  private platformId = inject(PLATFORM_ID);
+
   private refresh$ = new Subject<void>();
+
   projetos$ = this.refresh$.pipe(
     startWith(null),
+    filter(() => isPlatformBrowser(this.platformId) && !!localStorage.getItem('token')),
     switchMap(() => this.projetoService.getProjetos()),
   );
   isOpen = false;
@@ -50,6 +56,7 @@ export class TelaDashboard {
 
   constructor(
     private projetoService: ProjetoService,
+
     private fb: FormBuilder,
     private router: Router,
   ) {
@@ -59,6 +66,8 @@ export class TelaDashboard {
       color: ['', Validators.required],
     });
   }
+  ngOnInit() {}
+
   abrirJanelaEditar(projeto: Projeto) {
     this.projetoSelecionado = projeto;
 
@@ -107,7 +116,7 @@ export class TelaDashboard {
           this.mostrarConfirmacao = false;
         },
         error: (err) => {
-          console.log(err.error.errors);
+          console.log(err);
         },
       });
     }
@@ -123,7 +132,7 @@ export class TelaDashboard {
           this.refresh$.next();
         },
         error: (err) => {
-          console.log(err.error.errors);
+          console.log(err);
         },
       });
     }

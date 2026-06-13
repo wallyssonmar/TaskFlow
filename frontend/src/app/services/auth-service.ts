@@ -4,7 +4,8 @@ import { Register } from '../models/register';
 import { Login } from '../models/login';
 import { response } from 'express';
 import { LoginReponse } from '../models/Login-reponse';
-import { tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

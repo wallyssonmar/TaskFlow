@@ -90,7 +90,6 @@ export class TelaTarefa {
     }
   }
 
-  
   abrirConfirmacao(tarefa: Tarefa) {
     this.mostrarConfirmacao = true;
     this.tarefaSelecionada = tarefa;
@@ -130,12 +129,12 @@ export class TelaTarefa {
   }
 
   atualizarTarefa(id: number) {
-    if (this.form.valid && this.projetoSelecionado?.id){
+    if (this.form.valid && this.projetoSelecionado?.id) {
       const tarefa: Tarefa = {
         ...this.form.value,
         projetoId: this.projetoSelecionado.id,
       };
-      
+
       this.tarefaService.atualizarTarefa(tarefa, id).subscribe({
         next: () => {
           this.mostrarJanelaEditar = false;
@@ -145,18 +144,17 @@ export class TelaTarefa {
         error: (err) => {
           console.error('Erro ao editar a tarefa:', err);
         },
-      })
+      });
     }
   }
 
   criarTarefa() {
-    
     if (this.form.valid && this.projetoSelecionado?.id) {
       const tarefa: Tarefa = {
         ...this.form.value,
         projetoId: this.projetoSelecionado.id,
       };
-      
+
       this.tarefaService.setTarefa(tarefa).subscribe({
         next: () => {
           this.isOpen = false;
@@ -178,7 +176,7 @@ export class TelaTarefa {
           this.mostrarConfirmacao = false;
         },
         error: (err) => {
-          console.log(err.error.errors);
+          console.log(err);
         },
       });
     }
