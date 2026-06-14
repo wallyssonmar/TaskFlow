@@ -22,7 +22,14 @@ builder.Services.AddAuthentication(options =>
 {
 
     options.TokenValidationParameters = TokenHelpers.GetTokenValidationParameters(builder.Configuration);
-   
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine(context.Exception.Message);
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddAuthentication();

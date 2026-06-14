@@ -284,5 +284,25 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.UserController",
+    "Method": "GetUserByIdAsync",
+    "RelativePath": "api/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "TaskFlowAPI.DTOs.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

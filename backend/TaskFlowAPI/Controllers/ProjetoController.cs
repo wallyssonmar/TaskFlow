@@ -21,7 +21,7 @@ namespace TaskFlowAPI.Controllers
                 var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
                 List<ProjetoDto> projetos = await projetoService.GetProjetosAsync(userId);
-                return projetos;
+                return Ok(projetos);
             }
             catch (Exception ex)
             {
@@ -29,15 +29,17 @@ namespace TaskFlowAPI.Controllers
             } 
         }
 
-        
 
+        [Authorize]
         [HttpGet("{id:int}")]
 
         public async Task<ActionResult<ProjetoDto>> GetProjetoById(int id)
         {
             try
             {
-                ProjetoDto projeto = await projetoService.GetProjetoByIdAsync(id);
+                int userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+                ProjetoDto projeto = await projetoService.GetProjetoByUserAsync(id,userId);
                 return projeto;
             }
             catch (KeyNotFoundException ex)
@@ -53,7 +55,7 @@ namespace TaskFlowAPI.Controllers
             {   
                 var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
-                //ProjetoDto RetornoprojetoDto = await projetoService.SetProjetoAsync(projeto);
+                
                 UserProjetoResponseDto userProjeto = await projetoService.SetUserProjetoAsync(projeto, userId);
                 
                 return Created("",userProjeto);

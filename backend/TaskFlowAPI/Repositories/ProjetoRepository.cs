@@ -51,5 +51,13 @@ namespace TaskFlowAPI.Repositories
             return retornoUserProjeto.Entity;
             
         }
+
+        internal async Task<Projeto?> ObterProjetoPorUser(int projetoId, int userId)
+        {
+            return await taskFlowContext.Projetos
+                .Include(p => p.UserProjetos)
+                .FirstOrDefaultAsync(p => p.Id == projetoId && p.UserProjetos
+                .Any(u => u.User_Id == userId));
+        }
     }
 }

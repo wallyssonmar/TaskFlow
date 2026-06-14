@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
 using TaskFlowAPI.Services;
@@ -10,6 +11,7 @@ namespace TaskFlowAPI.Controllers
     public class TarefaController (TarefaService tarefaService) : ControllerBase
     {
         private readonly TarefaService tarefaService = tarefaService;
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<TarefasPorStatusDto>> ListarTarefasPorStatus(int id)
         {

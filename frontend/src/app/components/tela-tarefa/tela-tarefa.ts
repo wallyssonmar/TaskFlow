@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NgZone } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, NgZone, PLATFORM_ID } from '@angular/core';
 import { ProjetoService } from '../../services/projeto-service';
 import { Projeto } from '../../models/projeto';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -8,11 +8,11 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TarefaService } from '../../services/tarefa-service';
 import { Tarefa } from '../../models/tarefa';
-import { map, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
+import { filter, map, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
 import { TarefasResponse } from '../../models/tarefas-response';
 import { error } from 'node:console';
 
@@ -24,6 +24,7 @@ import { error } from 'node:console';
   styleUrl: './tela-tarefa.css',
 })
 export class TelaTarefa {
+  private platformId = inject(PLATFORM_ID);
   tarefa: Tarefa = {} as Tarefa;
   tarefaSelecionada: Tarefa = {} as Tarefa;
   mostrarConfirmacao = false;
@@ -46,6 +47,7 @@ export class TelaTarefa {
   projeto$!: Observable<Projeto>;
   tarefas$ = this.refresh$.pipe(
     startWith(void 0),
+    filter(() => isPlatformBrowser(this.platformId) && !!localStorage.getItem('token')),
     switchMap(() => this.tarefaService.getTarefas(this.idLink)),
   );
 

@@ -43,14 +43,14 @@ namespace TaskFlowAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        
         [HttpPost("refresh-token")]
         public async Task<ActionResult<LoginResponse>> RefreshTokenAsync([FromBody] RefreshTokenResponseDto refreshTokenResponse)
         {
             if (refreshTokenResponse is null)
                  return BadRequest();
 
-            LoginResponse response = await authService.RefreshTokenAsync(refreshTokenResponse.RefreshToken);
+            LoginResponse? response = await authService.RefreshTokenAsync(refreshTokenResponse.RefreshToken);
 
             if(response is null)
                 return Unauthorized();
