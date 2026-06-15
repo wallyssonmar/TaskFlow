@@ -68,16 +68,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TaskFlowAPI.Controllers.AuthController",
-    "Method": "Teste",
-    "RelativePath": "api/Auth/teste",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
     "Method": "GetProjetosAsync",
     "RelativePath": "api/Projeto",
@@ -279,6 +269,27 @@
       },
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.TarefaController",
+    "Method": "AtualizarTarefaStatus",
+    "RelativePath": "api/Tarefa/{idTarefa}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "statusAtualizado",
+        "Type": "TaskFlowAPI.DTOs.AtualizarStatusDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "idTarefa",
         "Type": "System.Int32",
         "IsRequired": true
       }

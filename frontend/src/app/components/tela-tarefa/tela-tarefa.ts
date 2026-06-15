@@ -67,16 +67,18 @@ export class TelaTarefa {
   }
 
   ngOnInit() {
-    this.projeto$ = this.route.params.pipe(
-      map((params) => Number(params['id'])),
-      tap((id) => {
-        this.idLink = id;
-      }),
-      switchMap((id) => this.projetoService.getProjetoById(id)),
-      tap((projeto) => {
-        this.projetoSelecionado = projeto;
-      }),
-    );
+    if (isPlatformBrowser(this.platformId) && localStorage.getItem('token')) {
+      this.projeto$ = this.route.params.pipe(
+        map((params) => Number(params['id'])),
+        tap((id) => {
+          this.idLink = id;
+        }),
+        switchMap((id) => this.projetoService.getProjetoById(id)),
+        tap((projeto) => {
+          this.projetoSelecionado = projeto;
+        }),
+      );
+    }
   }
 
   drop(event: CdkDragDrop<Tarefa[]>) {
@@ -89,6 +91,25 @@ export class TelaTarefa {
         event.previousIndex,
         event.currentIndex,
       );
+      const novoStatus = event.container.id;
+      let status = '';
+
+      switch (novoStatus) {
+        case 'listaAfazers':
+          status = 'A Fazer';
+          break;
+
+        case 'listaProgressos':
+          status = 'Em progresso';
+          break;
+
+        case 'listaConcluidas':
+          status = 'Concluído';
+          break;
+      }
+      const tarefa = event.container.data[event.currentIndex];
+
+      this.tarefaService.atualizarStatusTarefa(tarefa.id, status).subscribe();
     }
   }
 

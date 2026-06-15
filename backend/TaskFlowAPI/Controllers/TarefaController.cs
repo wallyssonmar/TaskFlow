@@ -27,6 +27,7 @@ namespace TaskFlowAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<TarefaDto>> SetTarefaAsync([FromBody] TarefaDto tarefaDto)
         {
@@ -41,8 +42,9 @@ namespace TaskFlowAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("{idProjeto}/{id}")]
 
+        [Authorize]
+        [HttpDelete("{idProjeto}/{id}")]
         public async Task<ActionResult> ExcluirTarefaAsync([FromRoute] int idProjeto,[FromRoute] int id)
         {
             try
@@ -57,8 +59,8 @@ namespace TaskFlowAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{idProjeto}/{id}")]
-
         public async Task<ActionResult> AtualizarTarefaAsync([FromBody] Tarefa tarefa, [FromRoute] int idProjeto, [FromRoute] int id)
         {
             try
@@ -69,6 +71,21 @@ namespace TaskFlowAPI.Controllers
             catch (Exception ex)
             {
 
+                return NotFound(ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPut("{idTarefa}")]
+        public async Task<ActionResult> AtualizarTarefaStatus([FromBody] AtualizarStatusDto statusAtualizado, int idTarefa)
+        {
+            try
+            {
+                await tarefaService.AtualizarTarefaStatusAsync(statusAtualizado, idTarefa);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
                 return NotFound(ex.Message);
             }
         }

@@ -60,11 +60,6 @@ namespace TaskFlowAPI.Controllers
         }
             
 
-        [Authorize]
-        [HttpGet("teste")]
-        public IActionResult Teste()
-        {
-            return Ok("Você está autenticado!");
-        }
+       
     }
 }

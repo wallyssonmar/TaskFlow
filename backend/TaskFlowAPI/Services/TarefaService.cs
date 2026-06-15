@@ -107,5 +107,17 @@ namespace TaskFlowAPI.Services
             
             await tarefaRepository.AtualizarTarefaAsync();
         }
+
+        public async Task AtualizarTarefaStatusAsync(AtualizarStatusDto statusTarefa, int idTarefa)
+        {
+            if(statusTarefa is null)
+                throw new KeyNotFoundException("Essa tarefa não possui status.");
+            Tarefa tarefaBanco = await ObterTarefaPorId(idTarefa);
+            if(tarefaBanco is null)
+                throw new KeyNotFoundException("Essa tarefa não existe no banco.");
+
+            tarefaBanco.Status = statusTarefa.StatusAtualizado;
+            await tarefaRepository.AtualizarTarefaAsync();
+        }
     }
 }

@@ -65,7 +65,7 @@ namespace TaskFlowAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeletarProjetoAsync(int id)
         {
@@ -79,7 +79,7 @@ namespace TaskFlowAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> AtualizarProjeto(int id, [FromBody] ProjetoUpdateDto projeto)
         {
