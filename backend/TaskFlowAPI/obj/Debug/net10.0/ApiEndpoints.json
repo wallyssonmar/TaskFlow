@@ -1,6 +1,16 @@
 [
   {
     "ContainingType": "TaskFlowAPI.Controllers.AuthController",
+    "Method": "LogoutAsync",
+    "RelativePath": "api/Auth",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskFlowAPI.Controllers.AuthController",
     "Method": "VerificarLoginAsync",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",

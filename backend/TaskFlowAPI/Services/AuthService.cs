@@ -69,5 +69,15 @@ namespace TaskFlowAPI.Services
             return await tokenService.ReNewRefreshToken(refreshToken);
 
         }
+
+        internal async Task LogoutAsync(int userId)
+        {
+            var refreshTokenBanco = await refreshTokenRepository.GetRefreshTokenByUserAsync(userId);
+            if(refreshTokenBanco is null)
+                throw new KeyNotFoundException($"Refresh Token não existe no banco.");
+
+            await refreshTokenRepository.LogoutAsync(refreshTokenBanco);
+            
+        }
     }
 }

@@ -32,4 +32,8 @@ export class AuthService {
   refreshToken(refreshToken: string) {
     return this.http.post<LoginReponse>(`${this.apiUrl}/refresh-token`, { refreshToken });
   }
+
+  logout() {
+    return this.http.delete(`${this.apiUrl}`);
+  }
 }

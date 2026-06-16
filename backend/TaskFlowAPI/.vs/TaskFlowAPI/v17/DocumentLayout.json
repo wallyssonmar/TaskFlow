@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\repositories\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:repositories\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,12 +37,51 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RefreshTokenRepository.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\RefreshTokenRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\RefreshTokenRepository.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\RefreshTokenRepository.cs",
+              "RelativeToolTip": "Repositories\\RefreshTokenRepository.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAMwCYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T21:47:21.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwE8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T21:35:15.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAwwEcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T21:13:57.811Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "AtualizarStatusDto.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\AtualizarStatusDto.cs",
               "RelativeDocumentMoniker": "DTOs\\AtualizarStatusDto.cs",
@@ -38,25 +89,24 @@
               "RelativeToolTip": "DTOs\\AtualizarStatusDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:33:05.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:33:05.111Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TarefaService.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
               "RelativeDocumentMoniker": "Services\\TarefaService.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs*",
-              "RelativeToolTip": "Services\\TarefaService.cs*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAABbAAAAAAAAAA==",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
+              "RelativeToolTip": "Services\\TarefaService.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAcwBUAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-15T14:53:29.276Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TarefaController.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\TarefaController.cs",
               "RelativeDocumentMoniker": "Controllers\\TarefaController.cs",
@@ -64,8 +114,7 @@
               "RelativeToolTip": "Controllers\\TarefaController.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAEwFMAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T14:19:58.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T14:19:58.438Z"
             }
           ]
         }

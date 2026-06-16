@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskFlowAPI.Authentication;
 using TaskFlowAPI.DTOs;
 using TaskFlowAPI.Models;
@@ -25,7 +26,6 @@ namespace TaskFlowAPI.Controllers
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
@@ -58,8 +58,26 @@ namespace TaskFlowAPI.Controllers
             return Ok(response);
             
         }
-            
+        [Authorize]
+        [HttpDelete]
+        public async Task<ActionResult> LogoutAsync()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if(!int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized("Usuário não autenticado.");
+            }
+            try
+            {
+                await authService.LogoutAsync(userId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
 
+                return BadRequest(ex.Message);
+            }
+        }
        
     }
 }

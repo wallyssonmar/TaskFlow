@@ -132,6 +132,18 @@
         }
       }
     },
+    "/api/Auth": {
+      "delete": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Projeto": {
       "get": {
         "tags": [

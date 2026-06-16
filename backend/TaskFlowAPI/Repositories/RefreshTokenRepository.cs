@@ -24,5 +24,17 @@ namespace TaskFlowAPI.Repositories
         {
             await taskFlowApiContext.SaveChangesAsync();
         }
+
+        internal async Task<RefreshToken?> GetRefreshTokenByUserAsync(int userId)
+        {
+            RefreshToken? refreshTokenBanco = await taskFlowApiContext.RefreshTokens.FirstOrDefaultAsync(r => r.UserId == userId);
+            return refreshTokenBanco;
+        }
+
+        internal async Task LogoutAsync(RefreshToken refreshTokenBanco)
+        {
+            taskFlowApiContext.RefreshTokens.Remove(refreshTokenBanco);
+            await taskFlowApiContext.SaveChangesAsync();
+        }
     }
 }

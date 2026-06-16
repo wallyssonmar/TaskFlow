@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\dtos\\atualizarstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:dtos\\atualizarstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +30,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AtualizarStatusDto.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\AtualizarStatusDto.cs",
               "RelativeDocumentMoniker": "DTOs\\AtualizarStatusDto.cs",
@@ -38,34 +38,32 @@
               "RelativeToolTip": "DTOs\\AtualizarStatusDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T18:33:05.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T18:33:05.111Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "TarefaService.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
               "RelativeDocumentMoniker": "Services\\TarefaService.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
               "RelativeToolTip": "Services\\TarefaService.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAlwHsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAcwBUAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-15T14:53:29.276Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "TarefaController.cs",
               "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\TarefaController.cs",
               "RelativeDocumentMoniker": "Controllers\\TarefaController.cs",
               "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\TarefaController.cs",
               "RelativeToolTip": "Controllers\\TarefaController.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAEwFMAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAEwFMAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-15T14:19:58.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-15T14:19:58.438Z"
             }
           ]
         }

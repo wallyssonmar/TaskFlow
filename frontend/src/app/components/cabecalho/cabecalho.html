@@ -3,7 +3,31 @@
 >
   <h1 class="text-2xl">TaskFlow</h1>
 
-  <div>
+  <div class="flex gap-5 items-center">
     <p>{{ (pessoaLogada$ | async)?.name }}</p>
+    <div class="flex justify-center hover:cursor-pointer hover:bg-gray-200 rounded-lg w-20 h-10">
+      <img class="w-8" src="logout.svg" alt="" />
+      <button (click)="mostrarConfirmacao = true" class="hover:cursor-pointer">Sair</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="mostrarConfirmacao" class="fixed inset-0 flex items-center justify-center bg-black/50">
+  <div class="flex flex-col items-center bg-background w-120 h-40 rounded-lg p-3 gap-5">
+    <h2 class="text-2xl font-bold">Deseja realmente sair?</h2>
+
+    <div class="flex gap-10">
+      <button
+        class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+        (click)="mostrarConfirmacao = false"
+      >
+        Cancelar
+      </button>
+      <button
+        class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
+        (click)="logout()"
+      >
+        Confirmar
+      </button>
+    </div>
   </div>
 </div>
