@@ -187,6 +187,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskFlowAPI.Controllers.ProjetoController",
+    "Method": "AddMembroProjeto",
+    "RelativePath": "api/Projeto/{idProjeto}/membro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailAdd",
+        "Type": "TaskFlowAPI.DTOs.MembroAddDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "idProjeto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskFlowAPI.Controllers.TarefaController",
     "Method": "SetTarefaAsync",
     "RelativePath": "api/Tarefa",

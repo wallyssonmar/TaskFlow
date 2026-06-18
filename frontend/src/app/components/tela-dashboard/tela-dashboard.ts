@@ -24,6 +24,7 @@ import { User } from '../../models/user';
 })
 export class TelaDashboard {
   form: FormGroup;
+  formAdd: FormGroup;
   private platformId = inject(PLATFORM_ID);
 
   private refresh$ = new Subject<void>();
@@ -34,6 +35,7 @@ export class TelaDashboard {
     switchMap(() => this.projetoService.getProjetos()),
   );
   isOpen = false;
+  mostrarJanelaAdicionar = false;
   mostrarConfirmacao = false;
   mostrarJanelaEditar = false;
   projetoSelecionado: any = null;
@@ -65,9 +67,28 @@ export class TelaDashboard {
       description: ['', [Validators.required, Validators.maxLength(65)]],
       color: ['', Validators.required],
     });
+
+    this.formAdd = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
   ngOnInit() {}
 
+  adicionarMembro(idProjeto: number) {
+    const email = this.formAdd.value.email;
+
+    this.projetoService.adicionarMembro(email, idProjeto).subscribe({
+      next: () => {
+        this.mostrarJanelaAdicionar = false;
+        console.log('Adicionado');
+      },
+    });
+  }
+
+  abriJanelaAdd(projeto: Projeto) {
+    this.projetoSelecionado = projeto;
+    this.mostrarJanelaAdicionar = true;
+  }
   abrirJanelaEditar(projeto: Projeto) {
     this.projetoSelecionado = projeto;
 

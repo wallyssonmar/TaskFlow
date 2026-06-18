@@ -21,6 +21,16 @@ namespace TaskFlowAPI.Data
 
             modelBuilder.Entity<UserProjeto>()
                 .HasKey(up => new { up.User_Id, up.Projeto_Id });
+
+            modelBuilder.Entity<UserProjeto>()
+                .HasOne(up => up.User)
+                .WithMany(u => u.UserProjetos)
+                .HasForeignKey(up => up.User_Id);
+
+            modelBuilder.Entity<UserProjeto>()
+                .HasOne(up => up.Projeto)
+                .WithMany(p => p.UserProjetos)
+                .HasForeignKey(up => up.Projeto_Id);
         }
     }
 }

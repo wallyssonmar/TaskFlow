@@ -15,6 +15,9 @@ export class ProjetoService {
   getProjetos() {
     return this.http.get<Projeto[]>(this.apiUrl);
   }
+  adicionarMembro(email: string, idProjeto: number) {
+    return this.http.post(`${this.apiUrl}/${idProjeto}/membro`, { email });
+  }
 
   getProjetoById(id: number): Observable<Projeto> {
     return this.http.get<Projeto>(`${this.apiUrl}/${id}`);

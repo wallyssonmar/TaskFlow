@@ -66,6 +66,22 @@ namespace TaskFlowAPI.Controllers
             }
         }
         [Authorize]
+        [HttpPost("{idProjeto}/membro")]
+        public async Task<ActionResult> AddMembroProjeto([FromBody] MembroAddDto emailAdd, int idProjeto)
+        {
+
+            try
+            {
+                await projetoService.AddMembroProjetoAsync(emailAdd, idProjeto);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException?.Message ?? ex.ToString());
+            }
+        }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeletarProjetoAsync(int id)
         {

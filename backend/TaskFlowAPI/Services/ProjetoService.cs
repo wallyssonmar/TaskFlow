@@ -105,5 +105,22 @@ namespace TaskFlowAPI.Services
                 ProjetoId = userProjetoResponse.Projeto_Id
             };
         }
+
+        public async Task AddMembroProjetoAsync(MembroAddDto emailAdd, int idProjeto)
+        {
+
+            var userBanco = await authRepository.GetUserAsync(emailAdd.Email);
+            if (userBanco is null)
+                throw new KeyNotFoundException("Usuario nã oencontrado");
+
+            UserProjeto userProjeto = new UserProjeto
+            {
+                User_Id = userBanco.Id,
+                Projeto_Id = idProjeto
+            };
+
+            UserProjeto userProjetoResponse = await projetoRepository.SetUserProjeto(userProjeto);
+
+        }
     }
 }
