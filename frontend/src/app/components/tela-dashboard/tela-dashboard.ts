@@ -15,6 +15,7 @@ import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
 
 import { UserService } from '../../services/user-service';
 import { User } from '../../models/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tela-dashboard',
@@ -58,7 +59,7 @@ export class TelaDashboard {
 
   constructor(
     private projetoService: ProjetoService,
-
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router,
   ) {
@@ -80,7 +81,20 @@ export class TelaDashboard {
     this.projetoService.adicionarMembro(email, idProjeto).subscribe({
       next: () => {
         this.mostrarJanelaAdicionar = false;
-        console.log('Adicionado');
+        this.snackBar.open('Membro adicionado com sucesso', 'Fechar', {
+          duration: 3000,
+          panelClass: 'sucess-snackbar',
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+      error: () => {
+        this.snackBar.open('Membro não foi encontrado', 'Fechar', {
+          duration: 3000,
+          panelClass: 'erro-snackbar',
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       },
     });
   }
@@ -114,10 +128,21 @@ export class TelaDashboard {
     if (projeto) {
       this.projetoService.setProjeto(projeto).subscribe({
         next: () => {
+          this.snackBar.open('Projeto com sucesso', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
           this.refresh$.next();
         },
-        error: (err) => {
-          console.log(err);
+        error: () => {
+          this.snackBar.open('Já existe um projeto com esse nome', 'Fechar', {
+            duration: 3000,
+            panelClass: 'erro-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
       });
     }

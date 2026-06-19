@@ -1,73 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
 
-@import "tailwindcss/preflight";
-@import "tailwindcss/theme";
-@import "tailwindcss/utilities";
-
-
-
-body{
-    background-color: var(--color-background);
-    font-family: "Poppins", sans-serif;
-    overflow-x: hidden;
-    margin-bottom: 20px;
+body {
+  background-color: var(--color-background);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  margin-bottom: 20px;
 }
 
+@theme {
+  --color-input-background: oklch(1 0 0);
+  --color-background: oklch(0.92 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-sidebar: oklch(0.985 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
 
-
-@theme{
-    --color-input-background: oklch(1 0 0);
-    --color-background: oklch(0.92 0 0);
-    --color-foreground: oklch(0.145 0 0);
-    --color-card-foreground: oklch(0.145 0 0);
-    --color-card: oklch(1 0 0);
-    --color-border: rgba(0, 0, 0, 0.1);
-    --color-chart-1: oklch(0.646 0.222 41.116);
-    --color-sidebar: oklch(0.985 0 0);
-    --color-sidebar-border: oklch(0.922 0 0);
-
-    --breakpoint-pc: 101.25rem;
+  --breakpoint-pc: 101.25rem;
 }
 
-.title-log-reg{
-    @apply flex flex-col items-center gap-2 mb-5
+.title-log-reg {
+  @apply flex flex-col items-center gap-2 mb-5;
 }
 
-.input{
-    @apply w-100 h-10 bg-background rounded-lg p-3
+.input {
+  @apply w-100 h-10 bg-background rounded-lg p-3;
 }
 
-.btn-reg-log{
-    @apply w-100 bg-foreground text-background rounded-lg h-10 mt-4
+.btn-reg-log {
+  @apply w-100 bg-foreground text-background rounded-lg h-10 mt-4;
 }
-.link-log-reg{
-    @apply hover:cursor-pointer text-blue-600
-}
-
-.card-projetos{
-    @apply w-95 p-3 bg-card gap-3 rounded-lg h-60 border  border-gray-300 hover:cursor-pointer hover:shadow-xl/20
+.link-log-reg {
+  @apply hover:cursor-pointer text-blue-600;
 }
 
-.lista-projeto{
-    @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5
-}
-.lista-cores{
-    @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5
+.card-projetos {
+  @apply w-95 p-3 bg-card gap-3 rounded-lg h-60 border  border-gray-300 hover:cursor-pointer hover:shadow-xl/20;
 }
 
-.cdkDropList{
-  @apply flex flex-col w-[95%] gap-2 m-auto min-h-150
+.lista-projeto {
+  @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5;
 }
-.tarefa{
-    @apply flex flex-col p-2 bg-input-background h-35 border rounded-lg border-gray-300 
-}
-
-.title-tarefa{
-    @apply text-lg font-medium
+.lista-cores {
+  @apply grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 list-none gap-5;
 }
 
-.tarefa-prioridade{
-    @apply flex items-center justify-center w-15 h-10 rounded-lg
+.cdkDropList {
+  @apply flex flex-col w-[95%] gap-2 m-auto min-h-150;
+}
+.tarefa {
+  @apply flex flex-col p-2 bg-input-background h-35 border rounded-lg border-gray-300;
+}
+
+.title-tarefa {
+  @apply text-lg font-medium;
+}
+
+.tarefa-prioridade {
+  @apply flex items-center justify-center w-15 h-10 rounded-lg;
+}
+
+.mat-mdc-snack-bar-container.erro-snackbar .mdc-snackbar__surface {
+  background: #e57373 !important;
+  color: black !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-mdc-snack-bar-container.erro-snackbar .mat-mdc-snack-bar-action {
+  color: black !important;
+}
+
+/*SnackBar Sucess*/
+.mat-mdc-snack-bar-container.sucess-snackbar .mdc-snackbar__surface {
+  background: #b0e573 !important;
+  color: black !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-mdc-snack-bar-container.sucess-snackbar .mat-mdc-snack-bar-action {
+  color: black !important;
 }

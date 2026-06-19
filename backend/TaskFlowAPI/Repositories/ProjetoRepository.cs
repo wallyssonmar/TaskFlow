@@ -16,7 +16,7 @@ namespace TaskFlowAPI.Repositories
             
         }
 
-        public async Task<List<Projeto>> GetProjetoAsync(int userId)
+        public async Task<List<Projeto?>> GetProjetoAsync(int userId)
         {
             return await taskFlowContext.UserProjetos
                  .Where(x => x.User_Id == userId)
@@ -58,6 +58,11 @@ namespace TaskFlowAPI.Repositories
                 .Include(p => p.UserProjetos)
                 .FirstOrDefaultAsync(p => p.Id == projetoId && p.UserProjetos
                 .Any(u => u.User_Id == userId));
+        }
+
+        internal async Task<Projeto?> GetProjetoPorNomeAsync(string name)
+        {
+            return await taskFlowContext.Projetos.FirstOrDefaultAsync(p => p.Name == name);
         }
     }
 }

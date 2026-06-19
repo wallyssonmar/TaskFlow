@@ -84,7 +84,9 @@ namespace TaskFlowAPI.Services
             if (user is null)
                 throw new KeyNotFoundException($"Registro com id {user} não existe no banco.");
 
-            
+            Projeto verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projeto.Name);
+            if(verificarProjeto != null)
+                throw new KeyNotFoundException($"Já existe projeto com esse nome.");
 
             Projeto projetoBanco = await projetoRepository.SetProjetoAsync(projeto);
 

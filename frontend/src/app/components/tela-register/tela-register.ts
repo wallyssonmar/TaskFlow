@@ -6,7 +6,7 @@ import { email, required } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tela-register',
@@ -17,7 +17,12 @@ import { AuthService } from '../../services/auth-service';
 export class TelaRegister {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService,private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+  ) {
     this.form = this.fb.group(
       {
         Name: ['', Validators.required],
@@ -34,12 +39,24 @@ export class TelaRegister {
   registrar() {
     if (this.form.valid) {
       this.authService.setRegisterUser(this.form.value).subscribe({
-        next : () => {
-          this.router.navigate(['/login'])
-        },error: (err) => {
-          console.log("Erro ao registrar", err)
-        }
-      })
+        next: () => {
+          this.snackBar.open('Conta criada com sucesso', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+          this.router.navigate(['/login']);
+        },
+        error: () => {
+          this.snackBar.open('Já existe um usuario com esse email.', 'Fechar', {
+            duration: 3000,
+            panelClass: 'erro-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        },
+      });
     }
   }
 }

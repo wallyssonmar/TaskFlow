@@ -65,6 +65,10 @@ namespace TaskFlowAPI.Services
                 Prioridade = tarefaDto.Prioridade
             };
 
+            Tarefa? tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name);
+            if(tarefaPorNome != null)
+                throw new Exception($"Já existe tarefa com esse nome.");
+
             Tarefa tarefaRetorno = await tarefaRepository.SetTarefaAsync(tarefa);
 
             TarefaDto tarefaDtoRetorno = new TarefaDto

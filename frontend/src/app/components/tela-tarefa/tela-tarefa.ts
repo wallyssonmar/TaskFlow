@@ -15,6 +15,7 @@ import { Tarefa } from '../../models/tarefa';
 import { filter, map, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
 import { TarefasResponse } from '../../models/tarefas-response';
 import { error } from 'node:console';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tela-tarefa',
@@ -56,7 +57,7 @@ export class TelaTarefa {
     private route: ActivatedRoute,
     private tarefaService: TarefaService,
     private fb: FormBuilder,
-    private zone: NgZone,
+    private snackBar: MatSnackBar,
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -183,9 +184,20 @@ export class TelaTarefa {
           this.isOpen = false;
           this.refresh$.next();
           this.form.reset();
+          this.snackBar.open('Tarefa criada com sucesso', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
         error: (err) => {
-          console.error('Erro ao criar tarefa:', err);
+          this.snackBar.open('Já existe uma tarefa com esse nome', 'Fechar', {
+            duration: 3000,
+            panelClass: 'erro-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
       });
     }
