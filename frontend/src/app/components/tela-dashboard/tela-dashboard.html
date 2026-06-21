@@ -58,15 +58,15 @@
           <section class="flex flex-col mb-8 mt-6 gap-3">
             <div class="flex justify-between">
               <p class="text-gray-600">Progresso</p>
-              <!-- <p >{{ qtdTarefaConcluida }}/{{ qtdTarefa}} Tarefas</p> -->
+              <p>{{ projeto.qtdTarefasConcluidas }}/{{ projeto.qtdTarefa }} Tarefas</p>
             </div>
 
             <div class="w-full h-2 bg-gray-200 rounded">
-              <!-- <div
+              <div
                 class="h-2 rounded"
                 [style.backgroundColor]="projeto.color"
-                [style.width.%]="(qtdTarefaConcluida / qtdTarefa) * 100"
-              ></div> -->
+                [style.width.%]="(projeto.qtdTarefasConcluidas / projeto.qtdTarefa) * 100"
+              ></div>
             </div>
           </section>
 

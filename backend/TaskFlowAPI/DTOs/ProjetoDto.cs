@@ -8,9 +8,7 @@ namespace TaskFlowAPI.DTOs
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required string Color { get; set; }
-
-        public List<Tarefa> Tarefas { get; set; } = [];
-
-        public List<UserProjeto> UserProjetos { get; set; } = new();
+        public int QtdTarefa { get; set; }
+        public int QtdTarefasConcluidas { get; set; }
     }
 }

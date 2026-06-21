@@ -20,6 +20,8 @@ namespace TaskFlowAPI.Repositories
         {
             return await taskFlowContext.UserProjetos
                  .Where(x => x.User_Id == userId)
+                 .Include(x => x.Projeto)
+                    .ThenInclude(p => p.Tarefas)
                  .Select(x => x.Projeto)
                  .ToListAsync();
         }

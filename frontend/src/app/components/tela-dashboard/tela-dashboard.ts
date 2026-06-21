@@ -12,10 +12,11 @@ import {
   ɵInternalFormsSharedModule,
 } from '@angular/forms';
 import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
-
+import { TarefasResponse } from '../../models/tarefas-response';
 import { UserService } from '../../services/user-service';
 import { User } from '../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TarefaService } from '../../services/tarefa-service';
 
 @Component({
   selector: 'app-tela-dashboard',
@@ -59,6 +60,8 @@ export class TelaDashboard {
 
   constructor(
     private projetoService: ProjetoService,
+    private tarefaService: TarefaService,
+
     private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private router: Router,
@@ -175,10 +178,21 @@ export class TelaDashboard {
     if (projeto) {
       this.projetoService.editarProjeto(id, projeto).subscribe({
         next: () => {
+          this.snackBar.open('Projeto atualizado com sucesso', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
           this.refresh$.next();
         },
-        error: (err) => {
-          console.log(err);
+        error: () => {
+          this.snackBar.open('Já existe um projeto com esse nome', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
       });
     }

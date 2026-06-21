@@ -16,6 +16,8 @@ import { filter, map, Observable, startWith, Subject, switchMap, tap } from 'rxj
 import { TarefasResponse } from '../../models/tarefas-response';
 import { error } from 'node:console';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-tela-tarefa',
@@ -25,6 +27,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './tela-tarefa.css',
 })
 export class TelaTarefa {
+  pessoaLogada$!: Observable<User | null>;
   private platformId = inject(PLATFORM_ID);
   tarefa: Tarefa = {} as Tarefa;
   tarefaSelecionada: Tarefa = {} as Tarefa;
@@ -54,11 +57,13 @@ export class TelaTarefa {
 
   constructor(
     private projetoService: ProjetoService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private tarefaService: TarefaService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
   ) {
+    this.pessoaLogada$ = this.userService.currentUser$;
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', [Validators.required, Validators.maxLength(65)]],
@@ -161,12 +166,23 @@ export class TelaTarefa {
 
       this.tarefaService.atualizarTarefa(tarefa, id).subscribe({
         next: () => {
+          this.snackBar.open('Tarefa atualizada com sucesso', 'Fechar', {
+            duration: 3000,
+            panelClass: 'sucess-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
           this.mostrarJanelaEditar = false;
           this.refresh$.next();
           this.form.reset();
         },
         error: (err) => {
-          console.error('Erro ao editar a tarefa:', err);
+          this.snackBar.open('Já existe uma tarefa com esse nome', 'Fechar', {
+            duration: 3000,
+            panelClass: 'erro-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
         },
       });
     }

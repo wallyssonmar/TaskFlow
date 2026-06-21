@@ -13,7 +13,7 @@
         <p>{{ projetoSelecionado.description }}</p>
       }
 
-      <p>{{ pessoaLogada }}</p>
+      <p>{{ (pessoaLogada$ | async)?.name }}</p>
     </section>
     <button
       class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
@@ -196,12 +196,15 @@
       <!-- Modal -->
       <div class="bg-white rounded-xl w-125 h-115 p-6 shadow-lg relative">
         <!-- Botão fechar -->
-        <button class="absolute top-3 right-3 text-gray-500 hover:cursor-pointer" (click)="isOpen = false">✕</button>
+        <button
+          class="absolute top-3 right-3 text-gray-500 hover:cursor-pointer"
+          (click)="isOpen = false"
+        >
+          ✕
+        </button>
         <form [formGroup]="form" (ngSubmit)="criarTarefa(); isOpen = false">
           <h2 class="text-xl font-semibold">Criar Nova Tarefa</h2>
-          <p class="text-gray-500 text-sm mb-4">
-            Adicione uma tarefa ao seu projeto
-          </p>
+          <p class="text-gray-500 text-sm mb-4">Adicione uma tarefa ao seu projeto</p>
 
           <h3>Nome da Tarefa</h3>
           <input
@@ -274,7 +277,11 @@
 
           <!-- Botões -->
           <div class="flex justify-end gap-2">
-            <button type="button" class="px-4 py-2 border rounded hover:cursor-pointer" (click)="isOpen = false">
+            <button
+              type="button"
+              class="px-4 py-2 border rounded hover:cursor-pointer"
+              (click)="isOpen = false"
+            >
               Cancelar
             </button>
             <button
@@ -291,103 +298,113 @@
   </div>
 </div>
 
- <!-- Editar tarefa -->
-    <div *ngIf="mostrarJanelaEditar" class="fixed inset-0 bg-black/50 flex items-center justify-center">
-      <!-- Modal -->
-      <div class="bg-white rounded-xl w-125 h-115 p-6 shadow-lg relative">
-        <!-- Botão fechar -->
-        <button class="absolute top-3 right-3 text-gray-500 hover:cursor-pointer" (click)="mostrarJanelaEditar = false">✕</button>
-        <form [formGroup]="form" (ngSubmit)="atualizarTarefa(tarefaSelecionada.id); mostrarJanelaEditar = false">
-          <h2 class="text-xl font-semibold">Editar</h2>
-          <p class="text-gray-500 text-sm mb-4">
-            Você está editando a tarefa 
-          </p>
+<!-- Editar tarefa -->
+<div *ngIf="mostrarJanelaEditar" class="fixed inset-0 bg-black/50 flex items-center justify-center">
+  <!-- Modal -->
+  <div class="bg-white rounded-xl w-125 h-115 p-6 shadow-lg relative">
+    <!-- Botão fechar -->
+    <button
+      class="absolute top-3 right-3 text-gray-500 hover:cursor-pointer"
+      (click)="mostrarJanelaEditar = false"
+    >
+      ✕
+    </button>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="atualizarTarefa(tarefaSelecionada.id); mostrarJanelaEditar = false"
+    >
+      <h2 class="text-xl font-semibold">Editar</h2>
+      <p class="text-gray-500 text-sm mb-4">Você está editando a tarefa</p>
 
-          <h3>Nome da Tarefa</h3>
-          <input
-            type="text"
-            formControlName="name"
-            placeholder="Ex: Trabalho, Faculdade, Pessoal"
-            class="w-full mb-3 p-2 border rounded"
-          />
+      <h3>Nome da Tarefa</h3>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Ex: Trabalho, Faculdade, Pessoal"
+        class="w-full mb-3 p-2 border rounded"
+      />
 
-          <h3>Descrição</h3>
-          <input
-            formControlName="description"
-            placeholder="Adicione detalhes sobre a tarefa..."
-            class="w-full mb-3 p-2 border rounded"
-          />
-          <section class="flex justify-around mb-5">
-            <div class="w-50">
-              <label>Prioridade</label>
+      <h3>Descrição</h3>
+      <input
+        formControlName="description"
+        placeholder="Adicione detalhes sobre a tarefa..."
+        class="w-full mb-3 p-2 border rounded"
+      />
+      <section class="flex justify-around mb-5">
+        <div class="w-50">
+          <label>Prioridade</label>
 
-              <div
-                class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
-                (click)="togglePrioridade()"
-              >
-                {{ form.get('prioridade')?.value }}
-                <span>▾</span>
-              </div>
-
-              <div
-                class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
-                *ngIf="openPrioridade"
-              >
-                <div
-                  *ngFor="let item of listaPrioridades"
-                  (click)="selectPrioridade(item)"
-                  [class.active]="item === form.get('prioridade')?.value"
-                  class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
-                >
-                  {{ item }}
-                  <span *ngIf="item === prioridade">✔</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="w-50">
-              <label>Status</label>
-              <div
-                class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
-                (click)="toggleStatus()"
-              >
-                {{ form.get('status')?.value }}
-                <span>▾</span>
-              </div>
-
-              <div
-                class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
-                *ngIf="openStatus"
-              >
-                <div
-                  *ngFor="let item of listaStatus"
-                  (click)="selectStatus(item)"
-                  [class.active]="item === form.get('status')?.value"
-                  class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
-                >
-                  {{ item }}
-                  <span *ngIf="item === form.get('status')?.value">✔</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Botões -->
-          <div class="flex justify-end gap-2">
-            <button type="button" class="px-4 py-2 border rounded hover:cursor-pointer" (click)="mostrarJanelaEditar = false">
-              Cancelar
-            </button>
-            <button
-              type="submit"
-              class="px-4 py-2 bg-black text-white rounded hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
-              [disabled]="form.invalid"
-            >
-              Editar Tarefa
-            </button>
+          <div
+            class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
+            (click)="togglePrioridade()"
+          >
+            {{ form.get('prioridade')?.value }}
+            <span>▾</span>
           </div>
-        </form>
+
+          <div
+            class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
+            *ngIf="openPrioridade"
+          >
+            <div
+              *ngFor="let item of listaPrioridades"
+              (click)="selectPrioridade(item)"
+              [class.active]="item === form.get('prioridade')?.value"
+              class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
+            >
+              {{ item }}
+              <span *ngIf="item === prioridade">✔</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-50">
+          <label>Status</label>
+          <div
+            class="flex justify-between cursor-pointer bg-background p-3 rounded-lg"
+            (click)="toggleStatus()"
+          >
+            {{ form.get('status')?.value }}
+            <span>▾</span>
+          </div>
+
+          <div
+            class="absolute w-50 mt-2 bg-white border border-gray-400 rounded-lg shadow-md p-2"
+            *ngIf="openStatus"
+          >
+            <div
+              *ngFor="let item of listaStatus"
+              (click)="selectStatus(item)"
+              [class.active]="item === form.get('status')?.value"
+              class="flex justify-between cursor-pointer hover:bg-background p-2 rounded-lg"
+            >
+              {{ item }}
+              <span *ngIf="item === form.get('status')?.value">✔</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botões -->
+      <div class="flex justify-end gap-2">
+        <button
+          type="button"
+          class="px-4 py-2 border rounded hover:cursor-pointer"
+          (click)="mostrarJanelaEditar = false"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-black text-white rounded hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-400"
+          [disabled]="form.invalid"
+        >
+          Editar Tarefa
+        </button>
       </div>
-    </div>
+    </form>
+  </div>
+</div>
 
 <!-- Confirmar Tarefa para deletar -->
 <div *ngIf="mostrarConfirmacao" class="fixed inset-0 flex items-center justify-center bg-black/50">

@@ -21,7 +21,7 @@ namespace TaskFlowAPI.Controllers
                 var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
                 List<ProjetoDto> projetos = await projetoService.GetProjetosAsync(userId);
-                return Ok(projetos);
+                return projetos;
             }
             catch (Exception ex)
             {
@@ -54,10 +54,8 @@ namespace TaskFlowAPI.Controllers
             try
             {   
                 var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-
-                
                 UserProjetoResponseDto userProjeto = await projetoService.SetUserProjetoAsync(projeto, userId);
-                
+
                 return Created("",userProjeto);
             }
             catch (Exception ex)

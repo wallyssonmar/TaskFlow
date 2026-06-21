@@ -27,21 +27,23 @@ namespace TaskFlowAPI.Services
 
 
             List<Projeto> projetos = await projetoRepository.GetProjetoAsync(userId);
-            
+            Console.WriteLine(projetos[0].Tarefas.Count);
 
             return projetos.Select(projeto => new ProjetoDto
             {
                 Id = projeto.Id,
                 Name = projeto.Name,
                 Description = projeto.Description,
-                Color = projeto.Color
+                Color = projeto.Color,
+                QtdTarefa = projeto.Tarefas.Count(),
+                QtdTarefasConcluidas = projeto.Tarefas.Count(t => t.Status == "Concluído")
 
             }).ToList();
         }
 
         public async Task<ProjetoDto> GetProjetoByUserAsync(int id, int userId)
         {
-            Projeto projetoPorId = await projetoRepository.ObterProjetoPorUser(id,userId);
+            Projeto? projetoPorId = await projetoRepository.ObterProjetoPorUser(id,userId);
             if(projetoPorId is null)
                     throw new KeyNotFoundException($"Registro com id {id} não existe no banco.");
 
@@ -68,7 +70,9 @@ namespace TaskFlowAPI.Services
         public async Task AtulizarProjeto(int id, ProjetoUpdateDto projetoDto)
         {
             Projeto projetoPorId = await ObterProjetoPorId(id);
-
+            Projeto? verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projetoDto.Name);
+            if (verificarProjeto != null)
+                throw new KeyNotFoundException($"Já existe projeto com esse nome.");
 
             projetoPorId.Name = projetoDto.Name;
             projetoPorId.Description = projetoDto.Description;
@@ -84,7 +88,7 @@ namespace TaskFlowAPI.Services
             if (user is null)
                 throw new KeyNotFoundException($"Registro com id {user} não existe no banco.");
 
-            Projeto verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projeto.Name);
+            Projeto? verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projeto.Name);
             if(verificarProjeto != null)
                 throw new KeyNotFoundException($"Já existe projeto com esse nome.");
 

@@ -94,6 +94,9 @@ namespace TaskFlowAPI.Services
 
         internal async Task AtualizarTarefaAsync(Tarefa tarefa, int idProjeto, int id)
         {
+            Tarefa? tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name);
+            if (tarefaPorNome != null)
+                throw new Exception($"Já existe tarefa com esse nome.");
             Tarefa tarefaNoBanco = await ObterTarefaPorId(id);
             if (idProjeto != tarefaNoBanco.ProjetoId)
             {

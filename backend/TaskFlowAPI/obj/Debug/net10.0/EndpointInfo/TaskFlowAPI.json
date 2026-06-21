@@ -734,19 +734,13 @@
             "type": "string",
             "nullable": true
           },
-          "tarefas": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tarefa"
-            },
-            "nullable": true
+          "qtdTarefa": {
+            "type": "integer",
+            "format": "int32"
           },
-          "userProjetos": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserProjeto"
-            },
-            "nullable": true
+          "qtdTarefasConcluidas": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
