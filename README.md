@@ -13,7 +13,7 @@ Sistema de gerenciamento de tarefas desenvolvido com Angular e ASP.NET Core, com
 - ASP.NET Core
 - C#
 - Entity Framework Core
-- SQL Server
+- Postgre
 
 - ## Segurança
 
