@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { Projeto } from '../../models/projeto';
 import { ProjetoService } from '../../services/projeto-service';
 import { RouterLink } from '@angular/router';
@@ -12,9 +12,7 @@ import {
   ɵInternalFormsSharedModule,
 } from '@angular/forms';
 import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
-import { TarefasResponse } from '../../models/tarefas-response';
-import { UserService } from '../../services/user-service';
-import { User } from '../../models/user';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TarefaService } from '../../services/tarefa-service';
 

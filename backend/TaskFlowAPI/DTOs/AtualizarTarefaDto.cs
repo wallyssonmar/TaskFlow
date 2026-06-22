@@ -1,14 +1,9 @@
 ﻿namespace TaskFlowAPI.DTOs
 {
-    public class TarefaDto
+    public class AtualizarTarefaDto
     {
-        public int Id { get; set; }
-        public int ProjetoId { get; set; }
         public required string Name { get; set; }
         public required string Description { get; set; }
         public required string Prioridade { get; set; }
-
-        public string? Status { get; set; }
-        
     }
 }

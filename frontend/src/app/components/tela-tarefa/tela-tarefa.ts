@@ -13,11 +13,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { TarefaService } from '../../services/tarefa-service';
 import { Tarefa } from '../../models/tarefa';
 import { filter, map, Observable, startWith, Subject, switchMap, tap } from 'rxjs';
-import { TarefasResponse } from '../../models/tarefas-response';
-import { error } from 'node:console';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user-service';
+import { AttTarefa } from '../../models/att-tarefa';
 
 @Component({
   selector: 'app-tela-tarefa',
@@ -41,7 +40,6 @@ export class TelaTarefa {
   openPrioridade = false;
   openStatus = false;
   form: FormGroup;
-  pessoaLogada: string = 'Almeida';
   listaAfazers: Tarefa[] = [];
   listaProgressos: Tarefa[] = [];
   listaConcluidas: Tarefa[] = [];
@@ -68,7 +66,6 @@ export class TelaTarefa {
       name: ['', Validators.required],
       description: ['', [Validators.required, Validators.maxLength(65)]],
       prioridade: ['', Validators.required],
-      status: ['', Validators.required],
     });
   }
 
@@ -159,7 +156,7 @@ export class TelaTarefa {
 
   atualizarTarefa(id: number) {
     if (this.form.valid && this.projetoSelecionado?.id) {
-      const tarefa: Tarefa = {
+      const tarefa: AttTarefa = {
         ...this.form.value,
         projetoId: this.projetoSelecionado.id,
       };
@@ -193,6 +190,7 @@ export class TelaTarefa {
       const tarefa: Tarefa = {
         ...this.form.value,
         projetoId: this.projetoSelecionado.id,
+        status: 'A Fazer',
       };
 
       this.tarefaService.setTarefa(tarefa).subscribe({

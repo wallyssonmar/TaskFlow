@@ -61,7 +61,7 @@ namespace TaskFlowAPI.Controllers
 
         [Authorize]
         [HttpPut("{idProjeto}/{id}")]
-        public async Task<ActionResult> AtualizarTarefaAsync([FromBody] Tarefa tarefa, [FromRoute] int idProjeto, [FromRoute] int id)
+        public async Task<ActionResult> AtualizarTarefaAsync([FromBody] AtualizarTarefaDto tarefa, [FromRoute] int idProjeto, [FromRoute] int id)
         {
             try
             {

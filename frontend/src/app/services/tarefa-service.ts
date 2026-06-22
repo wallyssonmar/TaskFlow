@@ -3,6 +3,7 @@ import { Tarefa } from '../models/tarefa';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TarefasResponse } from '../models/tarefas-response';
+import { AttTarefa } from '../models/att-tarefa';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class TarefaService {
     return this.http.delete<Tarefa>(`${this.apiUrl}/${id}/${tarefa.id}`);
   }
 
-  atualizarTarefa(tarefa: Tarefa, id: number) {
+  atualizarTarefa(tarefa: AttTarefa, id: number) {
     console.log(id);
     return this.http.put<Tarefa>(`${this.apiUrl}/${tarefa.projetoId}/${id}`, tarefa);
   }

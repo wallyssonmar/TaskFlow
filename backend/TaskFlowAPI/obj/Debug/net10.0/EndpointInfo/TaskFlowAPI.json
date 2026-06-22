@@ -518,17 +518,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Tarefa"
+                "$ref": "#/components/schemas/AtualizarTarefaDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Tarefa"
+                "$ref": "#/components/schemas/AtualizarTarefaDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Tarefa"
+                "$ref": "#/components/schemas/AtualizarTarefaDto"
               }
             }
           }
@@ -618,6 +618,29 @@
         "type": "object",
         "properties": {
           "statusAtualizado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AtualizarTarefaDto": {
+        "required": [
+          "description",
+          "name",
+          "prioridade"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "prioridade": {
             "type": "string",
             "nullable": true
           }
@@ -835,8 +858,7 @@
         "required": [
           "description",
           "name",
-          "prioridade",
-          "status"
+          "prioridade"
         ],
         "type": "object",
         "properties": {

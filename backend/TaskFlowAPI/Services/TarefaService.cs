@@ -92,9 +92,10 @@ namespace TaskFlowAPI.Services
             await tarefaRepository.ExcluirTarefaPorId(tarefaPorId);
         }
 
-        internal async Task AtualizarTarefaAsync(Tarefa tarefa, int idProjeto, int id)
+        internal async Task AtualizarTarefaAsync(AtualizarTarefaDto tarefa, int idProjeto, int id)
         {
             Tarefa? tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name);
+
             if (tarefaPorNome != null)
                 throw new Exception($"Já existe tarefa com esse nome.");
             Tarefa tarefaNoBanco = await ObterTarefaPorId(id);
@@ -107,7 +108,6 @@ namespace TaskFlowAPI.Services
 
             tarefaNoBanco.Name = tarefa.Name;
             tarefaNoBanco.Description = tarefa.Description;
-            tarefaNoBanco.Status = tarefa.Status;
             tarefaNoBanco.Prioridade = tarefa.Prioridade;
             
 

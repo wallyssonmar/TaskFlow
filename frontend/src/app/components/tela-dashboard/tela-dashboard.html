@@ -80,7 +80,7 @@
     *ngIf="mostrarJanelaEditar"
     class="fixed inset-0 flex items-center justify-center bg-black/50"
   >
-    <div class="bg-white rounded-xl w-125 h-150 p-6 shadow-lg relative">
+    <div class="bg-white rounded-xl w-125 h-130 p-6 shadow-lg relative">
       <form [formGroup]="form" (ngSubmit)="editarProjeto(projetoSelecionado.id)">
         <h2 class="text-xl font-semibold">Criar Novo Projeto</h2>
         <p class="text-sm mb-4">
@@ -115,7 +115,7 @@
         </div>
 
         <!-- Botões -->
-        <div class="flex gap-10">
+        <div class="flex justify-around gap-10">
           <button
             class="w-40 bg-foreground text-background rounded-lg h-10 mt-4 hover:cursor-pointer"
             (click)="mostrarJanelaEditar = false"
@@ -169,7 +169,8 @@
     <form [formGroup]="formAdd" (ngSubmit)="adicionarMembro(projetoSelecionado.id)">
       <div class="bg-white rounded-xl w-125 h-70 p-6 shadow-lg relative">
         <h2 class="text-xl font-semibold mb-10">
-          Quem vai participar do projeto?<strong>{{ projetoSelecionado.name }}</strong>
+          Quem vai participar do projeto <strong>{{ projetoSelecionado.name }}</strong
+          >?
         </h2>
         <input
           type="text"
@@ -197,10 +198,10 @@
     </form>
   </div>
 
-  <!-- Overlay -->
+  <!-- Criar projeto -->
   <div *ngIf="isOpen" class="fixed inset-0 bg-black/50 flex items-center justify-center">
     <!-- Modal -->
-    <div class="bg-white rounded-xl w-125 h-150 p-6 shadow-lg relative">
+    <div class="bg-white rounded-xl w-125 h-130 p-6 shadow-lg relative">
       <!-- Botão fechar -->
       <button class="absolute top-3 right-3 text-gray-500" (click)="isOpen = false">✕</button>
       <form [formGroup]="form" (ngSubmit)="criarProjeto()">

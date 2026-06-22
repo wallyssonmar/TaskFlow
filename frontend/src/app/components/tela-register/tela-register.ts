@@ -2,7 +2,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
-import { email, required } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
