@@ -41,7 +41,7 @@ Sistema de gerenciamento de tarefas desenvolvido com Angular e ASP.NET Core, com
 
 ### Login
 ![Login](./Images/login.png)
-![Register](./images/register.png)
+![Register](./Images/register.png)
 
 ### Dashboard
 ![Dashboard](./Images/dashboard.png)
