@@ -11,7 +11,7 @@ import {
   Validators,
   ɵInternalFormsSharedModule,
 } from '@angular/forms';
-import { filter, Observable, startWith, Subject, switchMap } from 'rxjs';
+import { filter, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TarefaService } from '../../services/tarefa-service';
@@ -31,8 +31,17 @@ export class TelaDashboard {
 
   projetos$ = this.refresh$.pipe(
     startWith(null),
-    filter(() => isPlatformBrowser(this.platformId) && !!localStorage.getItem('token')),
-    switchMap(() => this.projetoService.getProjetos()),
+    switchMap(() => {
+      if (!isPlatformBrowser(this.platformId)) {
+        return of([]);
+      }
+      const token = localStorage.getItem('token');
+      if (!token) {
+        return of([]);
+      }
+
+      return this.projetoService.getProjetos();
+    }),
   );
   isOpen = false;
   mostrarJanelaAdicionar = false;
@@ -129,13 +138,16 @@ export class TelaDashboard {
     if (projeto) {
       this.projetoService.setProjeto(projeto).subscribe({
         next: () => {
+          this.refresh$.next();
           this.snackBar.open('Projeto com sucesso', 'Fechar', {
             duration: 3000,
             panelClass: 'sucess-snackbar',
             horizontalPosition: 'center',
             verticalPosition: 'top',
           });
-          this.refresh$.next();
+          this.projetoService
+            .getProjetos()
+            .subscribe((x) => console.log('Projetos após criar:', x));
         },
         error: () => {
           this.snackBar.open('Já existe um projeto com esse nome', 'Fechar', {
@@ -157,6 +169,7 @@ export class TelaDashboard {
 
   excluirProjeto(projeto: Projeto) {
     if (projeto) {
+      console.log(projeto);
       this.projetoService.deleteProjeto(projeto.id).subscribe({
         next: () => {
           this.refresh$.next();

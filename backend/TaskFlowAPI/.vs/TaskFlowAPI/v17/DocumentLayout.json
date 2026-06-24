@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\tarefaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:services\\projetoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\repositories\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:repositories\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\dtos\\atualizartarefadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:dtos\\atualizartarefadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\dtos\\tarefadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:dtos\\tarefadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|d:\\projetos\\taskflow\\backend\\taskflowapi\\controllers\\projetocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{285E7D34-FA09-435A-A220-02F6104F644E}|TaskFlowAPI.csproj|solutionrelative:controllers\\projetocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AtualizarTarefaDto.cs",
-              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\AtualizarTarefaDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\AtualizarTarefaDto.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\AtualizarTarefaDto.cs",
-              "RelativeToolTip": "DTOs\\AtualizarTarefaDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAMAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ProjetoController.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\ProjetoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjetoController.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\ProjetoController.cs",
+              "RelativeToolTip": "Controllers\\ProjetoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-22T16:03:08.838Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TarefaRepository.cs",
-              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\TarefaRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\TarefaRepository.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Repositories\\TarefaRepository.cs",
-              "RelativeToolTip": "Repositories\\TarefaRepository.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAvwC0AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-22T15:24:53.878Z",
+              "WhenOpened": "2026-06-23T15:50:48.714Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TarefaService.cs",
-              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
-              "RelativeDocumentMoniker": "Services\\TarefaService.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\TarefaService.cs",
-              "RelativeToolTip": "Services\\TarefaService.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAuwF4AAABDAAAAAAAAAA==",
+              "Title": "ProjetoService.cs",
+              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\ProjetoService.cs",
+              "RelativeDocumentMoniker": "Services\\ProjetoService.cs",
+              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Services\\ProjetoService.cs",
+              "RelativeToolTip": "Services\\ProjetoService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAIAwwB0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-22T15:24:17.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TarefaController.cs",
-              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\TarefaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TarefaController.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\Controllers\\TarefaController.cs",
-              "RelativeToolTip": "Controllers\\TarefaController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAIwEMAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-22T15:24:03.931Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TarefaDto.cs",
-              "DocumentMoniker": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\TarefaDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\TarefaDto.cs",
-              "ToolTip": "D:\\projetos\\TaskFlow\\backend\\TaskFlowAPI\\DTOs\\TarefaDto.cs",
-              "RelativeToolTip": "DTOs\\TarefaDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-22T15:23:24.114Z",
+              "WhenOpened": "2026-06-23T15:47:09.566Z",
               "EditorCaption": ""
             }
           ]

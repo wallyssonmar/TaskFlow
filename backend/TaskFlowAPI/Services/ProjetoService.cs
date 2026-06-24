@@ -27,7 +27,7 @@ namespace TaskFlowAPI.Services
 
 
             List<Projeto> projetos = await projetoRepository.GetProjetoAsync(userId);
-            Console.WriteLine(projetos[0].Tarefas.Count);
+            
 
             return projetos.Select(projeto => new ProjetoDto
             {
@@ -67,11 +67,11 @@ namespace TaskFlowAPI.Services
             await projetoRepository.DeletarProjetoAsync(projetoPorId);
         }
 
-        public async Task AtulizarProjeto(int id, ProjetoUpdateDto projetoDto)
+        public async Task AtulizarProjeto(int id, ProjetoUpdateDto projetoDto, int userId)
         {
             Projeto projetoPorId = await ObterProjetoPorId(id);
-            Projeto? verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projetoDto.Name);
-            if (verificarProjeto != null)
+            bool verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projetoDto.Name, userId);
+            if (verificarProjeto == true)
                 throw new KeyNotFoundException($"Já existe projeto com esse nome.");
 
             projetoPorId.Name = projetoDto.Name;
@@ -88,9 +88,9 @@ namespace TaskFlowAPI.Services
             if (user is null)
                 throw new KeyNotFoundException($"Registro com id {user} não existe no banco.");
 
-            Projeto? verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projeto.Name);
-            if(verificarProjeto != null)
-                throw new KeyNotFoundException($"Já existe projeto com esse nome.");
+            bool verificarProjeto = await projetoRepository.GetProjetoPorNomeAsync(projeto.Name, userId);
+            if(verificarProjeto == true)
+                throw new InvalidOperationException($"Já existe projeto com esse nome.");
 
             Projeto projetoBanco = await projetoRepository.SetProjetoAsync(projeto);
 

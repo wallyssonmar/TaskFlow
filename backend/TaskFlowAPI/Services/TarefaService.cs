@@ -65,8 +65,8 @@ namespace TaskFlowAPI.Services
                 Prioridade = tarefaDto.Prioridade
             };
 
-            Tarefa? tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name);
-            if(tarefaPorNome != null)
+            bool tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name, tarefa.ProjetoId);
+            if(tarefaPorNome == true)
                 throw new Exception($"Já existe tarefa com esse nome.");
 
             Tarefa tarefaRetorno = await tarefaRepository.SetTarefaAsync(tarefa);
@@ -94,9 +94,9 @@ namespace TaskFlowAPI.Services
 
         internal async Task AtualizarTarefaAsync(AtualizarTarefaDto tarefa, int idProjeto, int id)
         {
-            Tarefa? tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name);
+            bool tarefaPorNome = await tarefaRepository.PegarTarefaPorNome(tarefa.Name, idProjeto);
 
-            if (tarefaPorNome != null)
+            if (tarefaPorNome == true)
                 throw new Exception($"Já existe tarefa com esse nome.");
             Tarefa tarefaNoBanco = await ObterTarefaPorId(id);
             if (idProjeto != tarefaNoBanco.ProjetoId)

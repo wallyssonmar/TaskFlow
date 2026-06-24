@@ -62,9 +62,9 @@ namespace TaskFlowAPI.Repositories
                 .Any(u => u.User_Id == userId));
         }
 
-        internal async Task<Projeto?> GetProjetoPorNomeAsync(string name)
+        internal async Task<bool> GetProjetoPorNomeAsync(string nameProjeto,int userId)
         {
-            return await taskFlowContext.Projetos.FirstOrDefaultAsync(p => p.Name == name);
+            return await taskFlowContext.UserProjetos.AnyAsync(up => up.User_Id == userId && up.Projeto.Name == nameProjeto);
         }
     }
 }

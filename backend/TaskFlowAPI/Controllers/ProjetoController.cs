@@ -97,9 +97,10 @@ namespace TaskFlowAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> AtualizarProjeto(int id, [FromBody] ProjetoUpdateDto projeto)
         {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             try
             {
-                await projetoService.AtulizarProjeto(id, projeto);
+                await projetoService.AtulizarProjeto(id, projeto, userId);
                 return NoContent();
             }
             catch (Exception ex)

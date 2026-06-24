@@ -43,9 +43,9 @@ namespace TaskFlowAPI.Repositories
             await taskFlowApiContext.SaveChangesAsync();
         }
 
-        public async Task<Tarefa?> PegarTarefaPorNome(string name)
+        public async Task<bool> PegarTarefaPorNome(string name, int idProjeto)
         {
-            return await taskFlowApiContext.Tarefas.FirstOrDefaultAsync(p => p.Name == name);
+            return await taskFlowApiContext.Tarefas.AnyAsync(p => p.Name == name && p.ProjetoId == idProjeto);
         }
     }
 }
